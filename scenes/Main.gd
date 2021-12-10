@@ -10,20 +10,26 @@ var tower_resource = null
 
 func _input(event):
 	_move_camera(event)
+	_move_background()
 	_build_tower(event)
 
 func _move_camera(event):
-	if Actions.cameraRight() and $Camera.limit_right - _width() > $Camera.position.x:
+	if Actions.cameraRight(event) and $Camera.limit_right - _width() > $Camera.position.x:
 		$Camera.position.x = $Camera.position.x + CAMERA_MOVE
 	
-	if Actions.cameraLeft() and $Camera.limit_left < $Camera.position.x:
+	if Actions.cameraLeft(event) and $Camera.limit_left < $Camera.position.x:
 		$Camera.position.x -= CAMERA_MOVE
 
-	if Actions.cameraBottom() and ($Camera.limit_bottom + CAMERA_MOVE * 2) - _height() > $Camera.position.y:
+	if Actions.cameraBottom(event) and ($Camera.limit_bottom + CAMERA_MOVE * 2) - _height() > $Camera.position.y:
 		$Camera.position.y += CAMERA_MOVE
 
-	if Actions.cameraTop() and $Camera.limit_top < $Camera.position.y:
+	if Actions.cameraTop(event) and $Camera.limit_top < $Camera.position.y:
 		$Camera.position.y -= CAMERA_MOVE
+
+func _move_background():
+
+	$Background.rect_global_position.x = $Camera.position.x
+	$Background.rect_global_position.y = $Camera.position.y
 
 func _build_tower(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
