@@ -8,6 +8,7 @@ const VALUE = 1
 onready var life = 15
 onready var velocity = 35
 onready var mobPathLocation = get_parent()
+onready var offset = 0
 
 func _ready():
 	$AnimatedSprite.play("walk")
@@ -18,8 +19,14 @@ func _ready():
 		# warning-ignore:return_value_discarded
 		Values.connect("buy", Values, "update_coins")
 
-func _physics_process(delta):
-	mobPathLocation.set_offset(mobPathLocation.get_offset() + velocity * delta)
+#func _physics_process(delta):
+#	#if offset == 0:
+#	#	offset = velocity * delta
+#	#else:
+#	#	offset += velocity * delta
+#	mobPathLocation.offset += velocity * delta
+#	# mobPathLocation.set_offset(mobPathLocation.get_offset() + velocity * delta)
+#	# pathToFollow.offset += 350 * delta
 
 func _on_Node2D_hit(damage):
 	life -= damage

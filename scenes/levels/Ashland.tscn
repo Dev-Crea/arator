@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/towers/TowerPunk.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/mobs/MobRat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/levels/Ashland.gd" type="Script" id=8]
 
 [sub_resource type="Curve2D" id=42]
@@ -62,11 +61,5 @@ rotate = false
 cubic_interp = false
 loop = false
 
-[node name="Mob3" parent="MobPath/MobPathLocation" instance=ExtResource( 3 )]
-rotation = -0.361283
-
-[node name="Mob1" parent="MobPath/MobPathLocation" instance=ExtResource( 3 )]
-position = Vector2( 175, 143 )
-scale = Vector2( 1.00617, 1 )
-
 [connection signal="building" from="." to="." method="_on_Node2D_building"]
+[connection signal="timeout" from="." to="." method="_on_Waves_timeout"]
