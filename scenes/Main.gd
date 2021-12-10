@@ -9,20 +9,21 @@ var tower_price = 0
 var tower_resource = null
 
 func _input(event):
-	_move_camera()
+	_move_camera(event)
 	_build_tower(event)
 
-func _move_camera():
-	if Input.is_action_pressed("ui_right") && $Camera.limit_right - _width() > $Camera.position.x:
-		$Camera.position.x += CAMERA_MOVE
+func _move_camera(event):
+	print("move camera ?")
+	if Actions.cameraRight() and $Camera.limit_right - _width() > $Camera.position.x:
+		$Camera.position.x = $Camera.position.x + CAMERA_MOVE
 	
-	if Input.is_action_pressed("ui_left") && $Camera.limit_left < $Camera.position.x:
+	if Actions.cameraLeft() and $Camera.limit_left < $Camera.position.x:
 		$Camera.position.x -= CAMERA_MOVE
 
-	if Input.is_action_pressed("ui_down") && ($Camera.limit_bottom + CAMERA_MOVE * 2) - _height() > $Camera.position.y:
+	if Actions.cameraBottom() and ($Camera.limit_bottom + CAMERA_MOVE * 2) - _height() > $Camera.position.y:
 		$Camera.position.y += CAMERA_MOVE
 
-	if Input.is_action_pressed("ui_up") && $Camera.limit_top < $Camera.position.y:
+	if Actions.cameraTop() and $Camera.limit_top < $Camera.position.y:
 		$Camera.position.y -= CAMERA_MOVE
 
 func _build_tower(event):

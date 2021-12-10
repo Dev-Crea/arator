@@ -17,7 +17,7 @@ func generate_mob():
 	pass
 
 func _on_Node2D_building(tower, position):
-	var building = load("res://scenes/towers/TowerPunk.tscn").instance()
+	var building = load("res://scenes/towers/" + tower).instance()
 	building.position = position
 	building.pay()
 	$TileMap.add_child(building)
