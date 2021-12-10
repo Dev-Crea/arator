@@ -11,7 +11,8 @@ onready var mobPathLocation = get_parent()
 onready var offset = 0
 
 func _ready():
-	$AnimatedSprite.play("walk")
+	print("Initialize mob rat")
+	$Path2D/PathFollow2D/AnimatedSprite.play("walk")
 	# warning-ignore:return_value_discarded
 	$explode.connect("animation_finished", self, "detach_animation_ended")
 	
@@ -19,18 +20,12 @@ func _ready():
 		# warning-ignore:return_value_discarded
 		Values.connect("buy", Values, "update_coins")
 
-#func _physics_process(delta):
-#	#if offset == 0:
-#	#	offset = velocity * delta
-#	#else:
-#	#	offset += velocity * delta
-#	mobPathLocation.offset += velocity * delta
-#	# mobPathLocation.set_offset(mobPathLocation.get_offset() + velocity * delta)
-#	# pathToFollow.offset += 350 * delta
+func set_curve(curve):
+	$Path2D.set_curve(curve)
 
 func _on_Node2D_hit(damage):
 	life -= damage
-	$AnimatedSprite.play("hurt")
+	$Path2D/PathFollow2D/AnimatedSprite.play("hurt")
 	$explode.playing = true
 	$explode.visible = true
 

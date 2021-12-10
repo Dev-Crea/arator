@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/units/rat/sprite.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/mobs/MobRat.gd" type="Script" id=2]
@@ -55,13 +55,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Curve2D" id=12]
+_data = {
+"points": PoolVector2Array(  )
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = ExtResource( 1 )
-animation = "walk"
-frame = 3
 
 [node name="Area2D" type="Area2D" parent="." groups=["mob"]]
 collision_layer = 513
@@ -75,5 +75,15 @@ shape = SubResource( 1 )
 visible = false
 frames = SubResource( 11 )
 frame = 4
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 12 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D"]
+frames = ExtResource( 1 )
+animation = "walk"
+frame = 3
 
 [connection signal="hit" from="." to="." method="_on_Node2D_hit"]

@@ -51,15 +51,17 @@ curve = SubResource( 43 )
 position = Vector2( 1159, 737 )
 rotation = -1.55875e-05
 
-[node name="MobPath" type="Path2D" parent="."]
+[node name="MobPathTemplate" type="Path2D" parent="."]
 curve = SubResource( 44 )
 
-[node name="MobPathLocation" type="PathFollow2D" parent="MobPath"]
+[node name="MobPathLocationTemplate" type="PathFollow2D" parent="MobPathTemplate"]
 position = Vector2( 30, 274 )
 rotation = 0.378785
 rotate = false
 cubic_interp = false
 loop = false
+
+[node name="Paths" type="Node2D" parent="."]
 
 [connection signal="building" from="." to="." method="_on_Node2D_building"]
 [connection signal="timeout" from="." to="." method="_on_Waves_timeout"]
