@@ -13,7 +13,6 @@ func _input(event):
 	_build_tower(event)
 
 func _move_camera(event):
-	print("move camera ?")
 	if Actions.cameraRight() and $Camera.limit_right - _width() > $Camera.position.x:
 		$Camera.position.x = $Camera.position.x + CAMERA_MOVE
 	
