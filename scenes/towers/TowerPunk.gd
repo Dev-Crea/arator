@@ -13,6 +13,7 @@ onready var level = 1
 onready var range_attack = 1
 
 func _ready():
+	animation_idle()
 	if !Values.is_connected("buy", Values, "update_coins"):
 		# warning-ignore:return_value_discarded
 		Values.connect("buy", Values, "update_coins")
@@ -37,36 +38,36 @@ func pay():
 	Values.coins -= Towers.punk_price()
 	Values.emit_signal("buy")
 
-func walk():
-	$Container/AnimatedSprite.play("walk")
-
-func hurt():
+func animation_hurt():
 	$Container/AnimatedSprite.play("hurt")
 
-func death():
+func animation_death():
 	$Container/AnimatedSprite.play("death")
 
-func idle():
+func animation_idle():
 	$Container/AnimatedSprite.play("idle")
+
+func animation_attack():
+	$Container/AnimatedSprite.play("attack")
 
 func _on_Degat_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
 	print("[_on_Degat_area_shape_entered] Tower punk have damage ! ", area.is_in_group("mob"))
-	$Container/AnimatedSprite.play("hurt")
+	animation_hurt()
 
 func _on_Degat_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
 	print("[_on_Degat_area_shape_exited] Tower punk stop degat ! ", area.is_in_group("mob"))
-	$Container/AnimatedSprite.play("idle")
+	animation_idle()
 
 func _on_Attack_area_shape_entered(_area_rid, area, area_shape_index, _local_shape_index):
 	print("[_on_Attack_area_shape_entered] Tower punk attack ! ", area.is_in_group("mob"))
 	if area.is_in_group("mob"):
-		$Container/AnimatedSprite.play("attack")
+		animation_attack()
 		area.shape_owner_get_owner(area_shape_index).get_parent().get_parent().emit_signal("hit", attack)
 
 func _on_Attack_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
 	if area != null:
 		print("[_on_Attack_area_shape_exited] Tower punk stop attack mob ! ", area.is_in_group("mob"))
-		$Container/AnimatedSprite.play("idle")
+		animation_idle()
 
 func _on_Hover_mouse_entered():
 	print("[_on_Hover_mouse_entered] Hover !")
@@ -85,9 +86,6 @@ func _physics_process(_delta):
 		hover = false
 
 func _input(event):
-	#print("Hover : ", str(hover))
-	#print("Select : ", str(selected))
-	
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed() and hover:
 		Values.select_icon = "res://assets/units/punk/Punk_icon.png"
 		Values.select_life = "Vie : "+ str(life)
@@ -96,10 +94,6 @@ func _input(event):
 		Values.select_level = "Niveaux : " + str(level)
 		Values.update_select_info()
 		selected = true
-	
-	#if selected and !hover:
-	#	Values.unselect_info()
-	#	selected = false
 
 func _hover():
 	var mouse = get_global_mouse_position()
