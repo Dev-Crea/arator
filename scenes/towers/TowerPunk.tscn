@@ -1,89 +1,91 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/units/punk/sprite.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/towers/TowerPunk.gd" type="Script" id=2]
-[ext_resource path="res://assets/attacks/explode/explode3.png" type="Texture" id=3]
+[ext_resource path="res://shaders/AttackArea.tres" type="Shader" id=3]
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 17 )
 
 [sub_resource type="CircleShape2D" id=2]
 
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 48, 48 )
+[sub_resource type="ShaderMaterial" id=21]
+shader = ExtResource( 3 )
+shader_param/swap_color = true
 
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 48, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 48, 48, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 96, 48, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 144, 48, 48, 48 )
-
-[sub_resource type="SpriteFrames" id=11]
-animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[node name="Node2D" type="Node2D"]
+[node name="TowerPunk" type="Node2D"]
+position = Vector2( 64, 64 )
 script = ExtResource( 2 )
 
-[node name="Degat" type="Area2D" parent="." groups=["tower"]]
-collision_layer = 2
-collision_mask = 2
+[node name="Container" type="Control" parent="."]
+margin_left = -64.0
+margin_top = -64.0
+margin_right = -64.0
+margin_bottom = -64.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Degat"]
-position = Vector2( 10, 7 )
+[node name="Hover" type="Area2D" parent="Container"]
+position = Vector2( 64, 64 )
+z_index = 100
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Hover"]
+light_mask = 0
+shape = SubResource( 22 )
+
+[node name="Degat" type="Area2D" parent="Container" groups=["towers"]]
+collision_layer = 0
+collision_mask = 0
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Degat"]
+position = Vector2( 64, 64 )
 shape = SubResource( 1 )
 
-[node name="Attack" type="Area2D" parent="."]
+[node name="Attack" type="Area2D" parent="Container" groups=["towers"]]
+collision_layer = 2
+collision_mask = 2
+input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
-position = Vector2( 10, 7 )
-scale = Vector2( 10, 10 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Attack"]
+position = Vector2( 64, 64 )
+scale = Vector2( 6.5, 6.5 )
 shape = SubResource( 2 )
 
-[node name="explode" type="AnimatedSprite" parent="."]
-visible = false
-frames = SubResource( 11 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Container"]
+position = Vector2( 54, 57 )
 frames = ExtResource( 1 )
 animation = "idle"
 
-[connection signal="area_shape_entered" from="Degat" to="." method="_on_Degat_area_shape_entered"]
-[connection signal="area_shape_exited" from="Degat" to="." method="_on_Degat_area_shape_exited"]
-[connection signal="area_shape_entered" from="Attack" to="." method="_on_Attack_area_shape_entered"]
-[connection signal="area_shape_exited" from="Attack" to="." method="_on_Attack_area_shape_exited"]
+[node name="AttackArea" type="ColorRect" parent="Container"]
+visible = false
+material = SubResource( 21 )
+margin_right = 128.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuildArea" type="ColorRect" parent="Container"]
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 80.0
+margin_bottom = 80.0
+color = Color( 1, 1, 1, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="area_shape_entered" from="Container/Degat" to="." method="_on_Degat_area_shape_entered"]
+[connection signal="area_shape_exited" from="Container/Degat" to="." method="_on_Degat_area_shape_exited"]
+[connection signal="area_shape_entered" from="Container/Attack" to="." method="_on_Attack_area_shape_entered"]
+[connection signal="area_shape_exited" from="Container/Attack" to="." method="_on_Attack_area_shape_exited"]

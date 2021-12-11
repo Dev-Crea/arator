@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/levels/Ashland.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=3]
+[ext_resource path="res://shaders/AttackArea.tres" type="Shader" id=4]
 
 [sub_resource type="StreamTexture" id=2]
 flags = 4
 load_path = "res://.import/background-ashland.jpg-b57e14958ba087cc8a52413ea866a954.stex"
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/swap_color = true
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -14,7 +20,7 @@ extents = Vector2( 16, 16 )
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 768.0 ],
+"_edit_horizontal_guides_": [ 768.0, 54.0 ],
 "_edit_vertical_guides_": [ 1352.0 ]
 }
 
@@ -29,7 +35,11 @@ __meta__ = {
 
 [node name="Ashland" parent="." instance=ExtResource( 2 )]
 
+[node name="AttackArea" parent="Ashland/TileMap/TowerPunk/Container" index="4"]
+material = SubResource( 3 )
+
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2( -39, -75 )
 anchor_mode = 0
 current = true
 limit_left = 0
@@ -64,4 +74,5 @@ shape = SubResource( 1 )
 [connection signal="body_exited" from="CursorBuild/Area2D" to="." method="_on_Build_body_exited"]
 
 [editable path="Ashland"]
+[editable path="Ashland/TileMap/TowerPunk"]
 [editable path="Camera/HUD"]

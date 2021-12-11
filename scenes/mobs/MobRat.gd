@@ -11,7 +11,6 @@ onready var mobPathLocation = get_parent()
 onready var offset = 0
 
 func _ready():
-	print("Initialize mob rat")
 	$Path2D/PathFollow2D/AnimatedSprite.play("walk")
 	# warning-ignore:return_value_discarded
 	$explode.connect("animation_finished", self, "detach_animation_ended")

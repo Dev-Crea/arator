@@ -4,14 +4,21 @@ const CAMERA_MOVE = 32
 const BUILD_VALID = Color(0, 255, 0, 100)
 const BUILD_INVALID = Color(255, 0, 0, 100)
 
+var selected = false
 var tower_selected = false
 var tower_price = 0
 var tower_resource = null
 
 func _input(event):
+	_quit_game(event)
 	_move_camera(event)
 	_move_background()
 	_build_tower(event)
+
+func _quit_game(event):
+	if(event.is_pressed() and event is InputEventKey):
+		if(event.scancode == KEY_ESCAPE):
+			get_tree().quit() 
 
 func _move_camera(event):
 	if Actions.cameraRight(event) and $Camera.limit_right - _width() > $Camera.position.x:
