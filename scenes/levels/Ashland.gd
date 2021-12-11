@@ -34,7 +34,6 @@ func _physics_process(delta):
 func _generate_mob():
 	var mobInstance = load("res://scenes/mobs/MobRat.tscn").instance()
 	mobInstance.set_curve($MobPathTemplate.get_curve())
-	
 	$Paths.add_child(mobInstance)
 
 func _on_Node2D_building(tower, position):

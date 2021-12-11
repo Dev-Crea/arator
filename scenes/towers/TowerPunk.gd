@@ -5,8 +5,6 @@ signal build(valid)
 # warning-ignore:unused_signal
 signal building
 
-const PRICE = 2
-
 onready var hover = false
 onready var selected = false
 onready var life = 20
@@ -36,7 +34,7 @@ func _build_color(valid):
 		return Color(255, 0, 0, alpha)
 
 func pay():
-	Values.coins -= PRICE
+	Values.coins -= Towers.punk_price()
 	Values.emit_signal("buy")
 
 func walk():

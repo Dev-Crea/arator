@@ -63,12 +63,6 @@ func _width():
 func _height():
 	return OS.get_real_window_size()[1]
 
-func _on_tower_punk_pressed():
-	tower_selected = true
-	tower_price = 2
-	tower_resource = "TowerPunk.tscn"
-	$CursorBuild.visible = true
-
 func _process(_delta):
 	if tower_selected:
 		$CursorBuild.rect_global_position = _arround_position()
@@ -88,3 +82,15 @@ func _on_Build_body_exited(body):
 
 func _check_build_authorized(body):
 	return body.is_in_group("map") or body.is_in_group("tower")
+
+func _on_tower_punk_pressed():
+	tower_selected = true
+	tower_price = Towers.punk_price()
+	tower_resource = "TowerPunk.tscn"
+	$CursorBuild.visible = true
+
+func _on_tower_cyborg_pressed():
+	tower_selected = true
+	tower_price = 5
+	tower_resource = "TowerCyborg.tscn"
+	$CursorBuild.visible = true
