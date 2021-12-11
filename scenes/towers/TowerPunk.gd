@@ -7,12 +7,14 @@ signal building
 
 const PRICE = 2
 
+onready var hover = false
+onready var selected = false
 onready var life = 20
 onready var attack = 5
+onready var level = 1
+onready var range_attack = 1
 
 func _ready():
-	# attack_area(false)
-	# build_area(true, true)
 	if !Values.is_connected("buy", Values, "update_coins"):
 		# warning-ignore:return_value_discarded
 		Values.connect("buy", Values, "update_coins")
@@ -67,8 +69,6 @@ func _on_Attack_area_shape_exited(_area_rid, area, _area_shape_index, _local_sha
 	if area != null:
 		print("[_on_Attack_area_shape_exited] Tower punk stop attack mob ! ", area.is_in_group("mob"))
 		$Container/AnimatedSprite.play("idle")
-		#$explode.playing = false
-	#$explode.visible = false
 
 func _on_Hover_mouse_entered():
 	print("[_on_Hover_mouse_entered] Hover !")
@@ -81,8 +81,27 @@ func _on_Hover_mouse_exited():
 func _physics_process(_delta):
 	if _hover():
 		attack_area(true)
+		hover = true
 	else:
 		attack_area(false)
+		hover = false
+
+func _input(event):
+	#print("Hover : ", str(hover))
+	#print("Select : ", str(selected))
+	
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed() and hover:
+		Values.select_icon = "res://assets/units/punk/Punk_icon.png"
+		Values.select_life = "Vie : "+ str(life)
+		Values.select_damage = "Dégats : " + str(attack)
+		Values.select_range = "Portée : " + str(range_attack)
+		Values.select_level = "Niveaux : " + str(level)
+		Values.update_select_info()
+		selected = true
+	
+	#if selected and !hover:
+	#	Values.unselect_info()
+	#	selected = false
 
 func _hover():
 	var mouse = get_global_mouse_position()
@@ -94,3 +113,4 @@ func _hover():
 	var y_max = $Container/Hover.global_position.y + 16
 	
 	return mouse.x > x_min and mouse.x < x_max and mouse.y > y_min and mouse.y < y_max
+

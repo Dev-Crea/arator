@@ -16,8 +16,8 @@ func _input(event):
 	_build_tower(event)
 
 func _quit_game(event):
-	if(event.is_pressed() and event is InputEventKey):
-		if(event.scancode == KEY_ESCAPE):
+	if event.is_pressed() and event is InputEventKey:
+		if event.scancode == KEY_ESCAPE:
 			get_tree().quit() 
 
 func _move_camera(event):

@@ -68,8 +68,6 @@ collision_mask = 514
 position = Vector2( 16, 16 )
 shape = SubResource( 1 )
 
-[connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/tower/punk" to="." method="_on_tower_punk_pressed"]
-[connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/tower/cyborg" to="Ashland" method="_on_tower_cyborg_pressed"]
 [connection signal="body_entered" from="CursorBuild/Area2D" to="." method="_on_Build_body_entered"]
 [connection signal="body_exited" from="CursorBuild/Area2D" to="." method="_on_Build_body_exited"]
 

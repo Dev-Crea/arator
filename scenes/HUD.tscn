@@ -4,9 +4,9 @@
 [ext_resource path="res://assets/resources/coin.png" type="Texture" id=2]
 [ext_resource path="res://assets/units/punk/Punk_icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/units/cyborg/cyborg_icon.png" type="Texture" id=4]
-[ext_resource path="res://assets/units/rat/icon.png" type="Texture" id=5]
+[ext_resource path="res://assets/resources/up-arrow.png" type="Texture" id=5]
 [ext_resource path="res://scenes/HUD.gd" type="Script" id=6]
-[ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=7]
+[ext_resource path="res://assets/tiles/menu.tres" type="TileSet" id=7]
 
 [node name="Control" type="CanvasLayer"]
 script = ExtResource( 6 )
@@ -31,27 +31,98 @@ tile_set = ExtResource( 7 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 0, 3, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 6, 4, 0, 7, 4, 0, 8, 4, 0, 9, 4, 0, 10, 4, 0, 11, 4, 0, 12, 4, 0, 13, 4, 0, 14, 4, 0, 15, 4, 0, 16, 4, 0, 17, 4, 0, 18, 4, 0, 19, 4, 0, 20, 4, 0, 21, 4, 0, 22, 4, 0, 23, 4, 0, 24, 4, 0, 25, 4, 0, 26, 4, 0, 27, 4, 0, 28, 4, 0, 29, 4, 0, 30, 4, 0, 31, 5, 0, 65536, 7, 0, 65537, 8, 0, 65538, 8, 0, 65539, 8, 0, 65540, 8, 0, 65541, 8, 0, 65542, 8, 0, 65543, 8, 0, 65544, 8, 0, 65545, 8, 0, 65546, 8, 0, 65547, 8, 0, 65548, 8, 0, 65549, 8, 0, 65550, 8, 0, 65551, 8, 0, 65552, 8, 0, 65553, 8, 0, 65554, 8, 0, 65555, 8, 0, 65556, 8, 0, 65557, 8, 0, 65558, 8, 0, 65559, 8, 0, 65560, 8, 0, 65561, 8, 0, 65562, 8, 0, 65563, 8, 0, 65564, 8, 0, 65565, 8, 0, 65566, 8, 0, 65567, 9, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 2, 0, 65536, 7, 0, 65537, 8, 0, 65538, 8, 0, 65539, 8, 0, 65540, 8, 0, 65541, 8, 0, 65542, 8, 0, 65543, 8, 0, 65544, 8, 0, 65545, 8, 0, 65546, 8, 0, 65547, 8, 0, 65548, 8, 0, 65549, 8, 0, 65550, 8, 0, 65551, 8, 0, 65552, 8, 0, 65553, 8, 0, 65554, 8, 0, 65555, 8, 0, 65556, 8, 0, 65557, 8, 0, 65558, 8, 0, 65559, 8, 0, 65560, 8, 0, 65561, 8, 0, 65562, 8, 0, 65563, 8, 0, 65564, 8, 0, 65565, 8, 0, 65566, 8, 0, 65567, 9, 0 )
 
-[node name="Minimap" type="ViewportContainer" parent="HBoxContainer/ColorRect/TileMap"]
-visible = false
+[node name="Control" type="Control" parent="HBoxContainer/ColorRect/TileMap"]
 margin_left = 8.0
-margin_top = 8.0
-margin_right = 56.0
-margin_bottom = 56.0
+margin_top = 22.0
+margin_right = 8.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="HBoxContainer/ColorRect/TileMap/Minimap"]
-size = Vector2( 48, 48 )
-handle_input_locally = false
-render_target_update_mode = 0
+[node name="Minimap" type="ViewportContainer" parent="HBoxContainer/ColorRect/TileMap/Control"]
+margin_left = -8.0
+margin_top = -6.0
+margin_right = 92.0
+margin_bottom = 42.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="coin" type="Control" parent="HBoxContainer/ColorRect/TileMap"]
-margin_left = 16.0
-margin_top = 16.0
+[node name="Viewport" type="Viewport" parent="HBoxContainer/ColorRect/TileMap/Control/Minimap"]
+size = Vector2( 100, 48 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control"]
+margin_left = 100.0
+margin_right = 1008.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="game" type="Control" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer"]
+margin_right = 300.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coin" type="Control" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/VBoxContainer/coin"]
+margin_right = 36.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/VBoxContainer/coin/HBoxContainer"]
 margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/VBoxContainer/coin/HBoxContainer"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 36.0
+margin_bottom = 15.0
+text = "15"
+align = 1
+
+[node name="life" type="Control" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/VBoxContainer"]
+margin_top = 22.0
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/VBoxContainer/life"]
+margin_right = 65.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -59,136 +130,119 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/TileMap/coin"]
-margin_right = 100.0
-margin_bottom = 32.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ColorRect/TileMap/coin/HBoxContainer"]
-margin_right = 32.0
-margin_bottom = 32.0
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="HBoxContainer/ColorRect/TileMap/coin/HBoxContainer"]
-margin_left = 36.0
-margin_top = 9.0
-margin_right = 52.0
-margin_bottom = 23.0
-text = "15"
-align = 1
-
-[node name="life" type="Control" parent="HBoxContainer/ColorRect/TileMap"]
-margin_left = 116.0
-margin_top = 16.0
-margin_right = 216.0
-margin_bottom = 48.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/TileMap/life"]
-margin_right = 200.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ColorRect/TileMap/life/HBoxContainer"]
-margin_right = 32.0
-margin_bottom = 40.0
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/VBoxContainer/life/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBoxContainer/ColorRect/TileMap/life/HBoxContainer"]
-margin_left = 36.0
-margin_top = 13.0
-margin_right = 81.0
-margin_bottom = 27.0
+[node name="Label" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/VBoxContainer/life/HBoxContainer"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 65.0
+margin_bottom = 15.0
 text = "15 / 15"
 align = 1
 
-[node name="tower" type="Control" parent="HBoxContainer/ColorRect/TileMap"]
-margin_left = 816.0
-margin_top = 16.0
-margin_right = 916.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 100, 0 )
+[node name="info" type="Control" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer"]
+margin_left = 304.0
+margin_right = 604.0
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info"]
+margin_left = -8.0
+margin_top = -5.0
+margin_right = 192.0
+margin_bottom = 39.0
+color = Color( 0.148575, 0.197477, 0.355469, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="punk" type="Button" parent="HBoxContainer/ColorRect/TileMap/tower"]
-margin_right = 90.0
-margin_bottom = 32.0
-text = "Punk (2)"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ColorRect/TileMap/tower/punk"]
-margin_right = 40.0
-margin_bottom = 36.0
-rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 3 )
-
-[node name="cyborg" type="Button" parent="HBoxContainer/ColorRect/TileMap/tower"]
-margin_left = 100.0
-margin_right = 190.0
-margin_bottom = 32.0
-text = "Cyborg (5)"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ColorRect/TileMap/tower/cyborg"]
-margin_right = 40.0
-margin_bottom = 36.0
-rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 4 )
-
-[node name="mobs" type="Control" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect"]
 visible = false
-margin_left = 10.0
-margin_right = 12.0
-margin_bottom = 64.0
+margin_top = 2.0
+margin_right = 40.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/mobs"]
+[node name="icon" type="TextureRect" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer"]
+margin_bottom = 38.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer"]
+margin_left = 4.0
+margin_right = 49.0
+margin_bottom = 38.0
+
+[node name="life" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer/VBoxContainer"]
+margin_right = 45.0
+margin_bottom = 14.0
+text = "Vie : "
+
+[node name="damage" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 45.0
+margin_bottom = 32.0
+text = "Dégat :"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer"]
+margin_left = 53.0
+margin_right = 103.0
+margin_bottom = 38.0
+
+[node name="level" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer/VBoxContainer2"]
+margin_right = 50.0
+margin_bottom = 14.0
+text = "Level : "
+
+[node name="range" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer/VBoxContainer2"]
+margin_top = 18.0
+margin_right = 50.0
+margin_bottom = 32.0
+text = "Portée :"
+
+[node name="update" type="Button" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer"]
+margin_left = 107.0
+margin_right = 151.0
+margin_bottom = 38.0
+icon = ExtResource( 5 )
+
+[node name="build" type="Control" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer"]
+margin_left = 608.0
+margin_right = 908.0
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build"]
+margin_top = -4.0
 margin_right = 40.0
 margin_bottom = 40.0
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/mobs/HBoxContainer"]
-margin_right = 32.0
-margin_bottom = 40.0
-texture = ExtResource( 5 )
+[node name="punk" type="Button" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer"]
+margin_right = 36.0
+margin_bottom = 44.0
+rect_clip_content = true
+icon = ExtResource( 3 )
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBoxContainer/mobs/HBoxContainer"]
-margin_left = 36.0
-margin_top = 13.0
-margin_right = 44.0
-margin_bottom = 27.0
-text = "1"
-align = 1
+[node name="cyborg" type="Button" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer"]
+margin_left = 40.0
+margin_right = 76.0
+margin_bottom = 44.0
+icon = ExtResource( 4 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

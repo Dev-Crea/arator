@@ -44,9 +44,6 @@ position = Vector2( 528, 144 )
 [node name="AttackArea" parent="TileMap/TowerPunk/Container" index="4"]
 material = SubResource( 45 )
 
-[node name="BuildArea" parent="TileMap/TowerPunk/Container" index="5"]
-visible = false
-
 [node name="MobSpawner" type="Path2D" parent="."]
 curve = SubResource( 42 )
 
