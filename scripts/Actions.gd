@@ -1,5 +1,8 @@
 extends Node
 
+func quitGame(event):
+	return event.is_pressed() and event is InputEventKey and event.scancode == KEY_ESCAPE
+
 func cameraRight(event):
 	return (
 		Input.is_action_pressed("ui_right") or

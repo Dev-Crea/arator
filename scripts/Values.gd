@@ -25,10 +25,10 @@ func initialize_level(level_lifes, level_coins):
 	_path("info/ColorRect/HBoxContainer/update").visible = false
 
 func update_coins():
-	_path("game/VBoxContainer/coin/HBoxContainer/Label").text = str(coins)
+	_path("game/VBoxContainer/coins/Label").text = str(coins)
 
 func update_lifes():
-	_path("game/VBoxContainer/life/HBoxContainer/Label").text = str(lifes)
+	_path("game/VBoxContainer/lifes/Label").text = str(lifes)
 
 func unselect_info():
 	select_life = ""

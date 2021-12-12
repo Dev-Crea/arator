@@ -11,6 +11,7 @@ onready var life = 20
 onready var attack = 5
 onready var level = 1
 onready var range_attack = 1
+onready var resource_icon = "res://assets/units/punk/icon.png"
 
 func _ready():
 	animation_idle()
@@ -51,23 +52,45 @@ func animation_attack():
 	$Container/AnimatedSprite.play("attack")
 
 func _on_Degat_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
-	print("[_on_Degat_area_shape_entered] Tower punk have damage ! ", area.is_in_group("mob"))
-	animation_hurt()
+	# print("[_on_Degat_area_shape_entered] Tower punk have damage ! ", area.is_in_group("mobs"))
+	# print(area)
+	if area.is_in_group("towers"):
+		print("damage towers")
+	
+	if area.is_in_group("level0"):
+		print("damage level0")
+	
+	if area.is_in_group("mobs"):
+		print("damage mobs")
+		# animation_hurt()
+	
+	# print(area.group)
 
 func _on_Degat_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
-	print("[_on_Degat_area_shape_exited] Tower punk stop degat ! ", area.is_in_group("mob"))
-	animation_idle()
+	# print("[_on_Degat_area_shape_exited] Tower punk stop degat ! ", area.is_in_group("mobs"))
+	if area.is_in_group("mobs"):
+		animation_idle()
 
 func _on_Attack_area_shape_entered(_area_rid, area, area_shape_index, _local_shape_index):
-	print("[_on_Attack_area_shape_entered] Tower punk attack ! ", area.is_in_group("mob"))
-	if area.is_in_group("mob"):
+	# print("[_on_Attack_area_shape_entered] Tower punk attack ! ", area.is_in_group("mobs"))
+	if area.is_in_group("mobs"):
 		animation_attack()
 		area.shape_owner_get_owner(area_shape_index).get_parent().get_parent().emit_signal("hit", attack)
 
+	if area.is_in_group("towers"):
+		print("damage towers")
+	
+	if area.is_in_group("level0"):
+		print("damage level0")
+	
+	if area.is_in_group("mobs"):
+		print("damage mobs")
+
 func _on_Attack_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
 	if area != null:
-		print("[_on_Attack_area_shape_exited] Tower punk stop attack mob ! ", area.is_in_group("mob"))
-		animation_idle()
+		# print("[_on_Attack_area_shape_exited] Tower punk stop attack mob ! ", area.is_in_group("mob"))
+		if area.is_in_group("mob"):
+			animation_idle()
 
 func _on_Hover_mouse_entered():
 	print("[_on_Hover_mouse_entered] Hover !")
@@ -87,7 +110,7 @@ func _physics_process(_delta):
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed() and hover:
-		Values.select_icon = "res://assets/units/punk/Punk_icon.png"
+		Values.select_icon = resource_icon
 		Values.select_life = "Vie : "+ str(life)
 		Values.select_damage = "Dégats : " + str(attack)
 		Values.select_range = "Portée : " + str(range_attack)
@@ -98,11 +121,21 @@ func _input(event):
 func _hover():
 	var mouse = get_global_mouse_position()
 	
-	var x_min = $Container/Hover.global_position.x - 16
-	var x_max = $Container/Hover.global_position.x + 16
-	
-	var y_min = $Container/Hover.global_position.y - 16
-	var y_max = $Container/Hover.global_position.y + 16
-	
-	return mouse.x > x_min and mouse.x < x_max and mouse.y > y_min and mouse.y < y_max
+	return (
+		mouse.x > $Container/Hover.global_position.x - 16 and
+		mouse.x < $Container/Hover.global_position.x + 16 and
+		mouse.y > $Container/Hover.global_position.y - 16 and 
+		mouse.y < $Container/Hover.global_position.y + 16
+	)
 
+
+func _on_Attack_area_entered(area):
+	print("_on_Attack_area_entered")
+	if area.is_in_group("towers"):
+		print("damage towers")
+	
+	if area.is_in_group("level0"):
+		print("damage level0")
+	
+	if area.is_in_group("mobs"):
+		print("damage mobs")

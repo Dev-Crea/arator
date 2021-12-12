@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Punk_icon.png-26d9ddcdfbd7ebc5e5d009849472f35c.stex"
+path="res://.import/attack.png-0ad262c8b45a774afd8efc5226268b0c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/units/punk/Punk_icon.png"
-dest_files=[ "res://.import/Punk_icon.png-26d9ddcdfbd7ebc5e5d009849472f35c.stex" ]
+source_file="res://assets/units/punk/attack.png"
+dest_files=[ "res://.import/attack.png-0ad262c8b45a774afd8efc5226268b0c.stex" ]
 
 [params]
 

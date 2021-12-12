@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Punk_death.png-371ae2b23c7e1d30e52906ca11cf7f75.stex"
+path="res://.import/icon.png-7dc3d94267b51c0ff7cd16cf85feba6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/units/punk/Punk_death.png"
-dest_files=[ "res://.import/Punk_death.png-371ae2b23c7e1d30e52906ca11cf7f75.stex" ]
+source_file="res://assets/units/punk/icon.png"
+dest_files=[ "res://.import/icon.png-7dc3d94267b51c0ff7cd16cf85feba6a.stex" ]
 
 [params]
 

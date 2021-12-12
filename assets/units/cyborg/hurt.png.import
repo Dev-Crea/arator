@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Punk_hurt.png-6e677d28279692f69af7818bddd01eb7.stex"
+path="res://.import/hurt.png-92df2e94385e7f47e538ee1bc3b16a1b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/units/punk/Punk_hurt.png"
-dest_files=[ "res://.import/Punk_hurt.png-6e677d28279692f69af7818bddd01eb7.stex" ]
+source_file="res://assets/units/cyborg/hurt.png"
+dest_files=[ "res://.import/hurt.png-92df2e94385e7f47e538ee1bc3b16a1b.stex" ]
 
 [params]
 

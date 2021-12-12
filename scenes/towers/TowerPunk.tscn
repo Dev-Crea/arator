@@ -17,7 +17,7 @@ shader = ExtResource( 3 )
 shader_param/swap_color = true
 
 [node name="TowerPunk" type="Node2D"]
-position = Vector2( 64, 64 )
+position = Vector2( 0, 1 )
 script = ExtResource( 2 )
 
 [node name="Container" type="Control" parent="."]
@@ -42,16 +42,16 @@ monitorable = false
 light_mask = 0
 shape = SubResource( 22 )
 
-[node name="Degat" type="Area2D" parent="Container" groups=["towers"]]
-collision_layer = 0
-collision_mask = 0
+[node name="Degat" type="Area2D" parent="Container"]
+collision_layer = 2
+collision_mask = 2
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Degat"]
 position = Vector2( 64, 64 )
 shape = SubResource( 1 )
 
-[node name="Attack" type="Area2D" parent="Container" groups=["towers"]]
+[node name="Attack" type="Area2D" parent="Container"]
 collision_layer = 2
 collision_mask = 2
 input_pickable = false
@@ -88,5 +88,6 @@ __meta__ = {
 
 [connection signal="area_shape_entered" from="Container/Degat" to="." method="_on_Degat_area_shape_entered"]
 [connection signal="area_shape_exited" from="Container/Degat" to="." method="_on_Degat_area_shape_exited"]
+[connection signal="area_entered" from="Container/Attack" to="." method="_on_Attack_area_entered"]
 [connection signal="area_shape_entered" from="Container/Attack" to="." method="_on_Attack_area_shape_entered"]
 [connection signal="area_shape_exited" from="Container/Attack" to="." method="_on_Attack_area_shape_exited"]

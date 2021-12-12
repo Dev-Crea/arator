@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=31 format=2]
 
-[ext_resource path="res://assets/units/cyborg/Cyborg_attack1.png" type="Texture" id=1]
-[ext_resource path="res://assets/units/cyborg/Cyborg_death.png" type="Texture" id=2]
-[ext_resource path="res://assets/units/cyborg/Cyborg_idle.png" type="Texture" id=3]
-[ext_resource path="res://assets/units/cyborg/Cyborg_hurt.png" type="Texture" id=4]
+[ext_resource path="res://assets/units/cyborg/attack.png" type="Texture" id=1]
+[ext_resource path="res://assets/units/cyborg/death.png" type="Texture" id=2]
+[ext_resource path="res://assets/units/cyborg/idle.png" type="Texture" id=3]
+[ext_resource path="res://assets/units/cyborg/hurt.png" type="Texture" id=4]
 [ext_resource path="res://assets/attacks/explode3.png" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=15]

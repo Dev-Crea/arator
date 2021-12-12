@@ -1,7 +1,7 @@
 extends Node2D
 
 # warning-ignore:unused_signal
-signal building(tower, position)
+signal building(position)
 # warning-ignore:unused_signal
 signal wave_ending
 signal timeout
@@ -36,11 +36,12 @@ func _generate_mob():
 	mobInstance.set_curve($MobPathTemplate.get_curve())
 	$Paths.add_child(mobInstance)
 
-func _on_Node2D_building(tower, position):
-	var building = load("res://scenes/towers/" + tower).instance()
+func _on_Node2D_building(position):
+	var building = load("res://scenes/towers/" + Towers.resource).instance()
 	building.position = position
 	building.pay()
 	$TileMap.add_child(building)
+	Towers.unselect()
 
 func _on_Waves_timeout():
 	_generate_mob()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cyborg_hurt.png-6e87b6e4e9646d09f4a717b270a8720d.stex"
+path="res://.import/death.png-25312efab1ce5e30cd79c7e07a603c8b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/units/cyborg/Cyborg_hurt.png"
-dest_files=[ "res://.import/Cyborg_hurt.png-6e87b6e4e9646d09f4a717b270a8720d.stex" ]
+source_file="res://assets/units/cyborg/death.png"
+dest_files=[ "res://.import/death.png-25312efab1ce5e30cd79c7e07a603c8b.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cyborg_attack1.png-66124eeb8a76499dbdc989a704d5c12c.stex"
+path="res://.import/attack.png-4af2b86d64438afe18c817605f7ee467.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/units/cyborg/Cyborg_attack1.png"
-dest_files=[ "res://.import/Cyborg_attack1.png-66124eeb8a76499dbdc989a704d5c12c.stex" ]
+source_file="res://assets/units/cyborg/attack.png"
+dest_files=[ "res://.import/attack.png-4af2b86d64438afe18c817605f7ee467.stex" ]
 
 [params]
 
