@@ -4,9 +4,7 @@
 [ext_resource path="res://scenes/levels/Ashland.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=3]
 [ext_resource path="res://assets/background/background-ashland.jpg" type="Texture" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+[ext_resource path="res://scenes/towers/BuilderZone.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -39,26 +37,12 @@ limit_bottom = 768
 offset = Vector2( 0, 544 )
 transform = Transform2D( 1, 0, 0, 1, 0, 544 )
 
-[node name="CursorBuild" type="ColorRect" parent="."]
-margin_right = 32.0
-margin_bottom = 32.0
-color = Color( 0, 1, 0, 0.392157 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Area2D" type="Area2D" parent="CursorBuild"]
-collision_layer = 0
-collision_mask = 514
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CursorBuild/Area2D"]
-position = Vector2( 16, 16 )
-shape = SubResource( 1 )
+[node name="BuilderZone" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer/punk" to="." method="_on_tower_punk_pressed"]
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer/cyborg" to="." method="_on_tower_cyborg_pressed"]
-[connection signal="body_entered" from="CursorBuild/Area2D" to="." method="_on_Build_body_entered"]
-[connection signal="body_exited" from="CursorBuild/Area2D" to="." method="_on_Build_body_exited"]
 
 [editable path="Ashland"]
 [editable path="Camera/HUD"]
+[editable path="BuilderZone"]

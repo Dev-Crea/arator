@@ -30,3 +30,9 @@ func cyborg_price():
 
 func cyborg_scene():
 	return "TowerCyborg.tscn"
+
+func punk_area_attack():
+	return 3
+
+func cyborg_area_attack():
+	return 4

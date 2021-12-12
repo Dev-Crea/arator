@@ -41,11 +41,11 @@ func _build_tower(event):
 		_building_stop()
 
 func _building_stop():
-	$CursorBuild.visible = false
+	$BuilderZone.visible = false
 
 func _building_tower():
 	_building_stop()
-	var position = $CursorBuild.rect_global_position
+	var position = $BuilderZone/Area/Bulding.rect_global_position
 	
 	position.x += 16
 	position.y += 16
@@ -61,7 +61,7 @@ func _height():
 
 func _process(_delta):
 	if Towers.selected:
-		$CursorBuild.rect_global_position = _arround_position()
+		$BuilderZone/Area.rect_global_position = _arround_position()
 
 func _arround_position():
 	var position = get_viewport().get_mouse_position() / Constants.TILE_SIZE
@@ -70,19 +70,19 @@ func _arround_position():
 
 func _on_Build_body_entered(body):
 	if _check_build_authorized(body):
-		$CursorBuild.color = Constants.COLOR_BUILD_INVALID
+		$BuilderZone/Area/Bulding.color = Constants.COLOR_BUILD_INVALID
 
 func _on_Build_body_exited(body):
 	if _check_build_authorized(body):
-		$CursorBuild.color = Constants.COLOR_BUILD_VALID
+		$BuilderZone/Area/Bulding.color = Constants.COLOR_BUILD_VALID
 
 func _check_build_authorized(body):
 	return body.is_in_group("map") or body.is_in_group("tower")
 
 func _on_tower_punk_pressed():
 	Towers.select(Towers.PUNK)
-	$CursorBuild.visible = true
+	$BuilderZone.visible = true
 
 func _on_tower_cyborg_pressed():
 	Towers.select(Towers.CYBORG)
-	$CursorBuild.visible = true
+	$BuilderZone.visible = true
