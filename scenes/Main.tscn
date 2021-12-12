@@ -11,8 +11,8 @@ extents = Vector2( 16, 16 )
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 768.0, 54.0 ],
-"_edit_vertical_guides_": [ 1352.0 ]
+"_edit_horizontal_guides_": [ 768.0, 54.0, -16.0, -16.0, 768.0 ],
+"_edit_vertical_guides_": [ 1352.0, 1344.0, -24.0 ]
 }
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -32,15 +32,14 @@ anchor_mode = 0
 current = true
 limit_left = 0
 limit_top = 0
-limit_right = 1352
-limit_bottom = 832
+limit_right = 1344
+limit_bottom = 768
 
 [node name="HUD" parent="Camera" instance=ExtResource( 1 )]
 offset = Vector2( 0, 544 )
 transform = Transform2D( 1, 0, 0, 1, 0, 544 )
 
 [node name="CursorBuild" type="ColorRect" parent="."]
-visible = false
 margin_right = 32.0
 margin_bottom = 32.0
 color = Color( 0, 1, 0, 0.392157 )

@@ -16,11 +16,11 @@ extents = Vector2( 10, 17 )
 shader = ExtResource( 3 )
 shader_param/swap_color = true
 
-[node name="TowerPunk" type="Node2D"]
+[node name="TowerPunk" type="Node2D" groups=["tower"]]
 position = Vector2( 0, 1 )
 script = ExtResource( 2 )
 
-[node name="Container" type="Control" parent="."]
+[node name="Container" type="Control" parent="." groups=["tower"]]
 margin_left = -64.0
 margin_top = -64.0
 margin_right = -64.0
@@ -30,7 +30,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hover" type="Area2D" parent="Container"]
+[node name="Hover" type="Area2D" parent="Container" groups=["tower"]]
 position = Vector2( 64, 64 )
 z_index = 100
 collision_layer = 8
@@ -38,33 +38,33 @@ collision_mask = 8
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Hover"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Hover" groups=["tower"]]
 light_mask = 0
 shape = SubResource( 22 )
 
-[node name="Degat" type="Area2D" parent="Container"]
+[node name="Degat" type="Area2D" parent="Container" groups=["tower"]]
 collision_layer = 0
 collision_mask = 0
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Degat"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Degat" groups=["tower"]]
 position = Vector2( 64, 64 )
 shape = SubResource( 1 )
 
-[node name="Attack" type="Area2D" parent="Container"]
+[node name="Attack" type="Area2D" parent="Container" groups=["tower"]]
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Attack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Attack" groups=["tower"]]
 position = Vector2( 64, 64 )
 scale = Vector2( 6.5, 6.5 )
 shape = SubResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Container"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Container" groups=["tower"]]
 position = Vector2( 54, 57 )
 frames = ExtResource( 1 )
 animation = "idle"
 
-[node name="AttackArea" type="ColorRect" parent="Container"]
+[node name="AttackArea" type="ColorRect" parent="Container" groups=["tower"]]
 visible = false
 material = SubResource( 21 )
 margin_right = 128.0
@@ -73,7 +73,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuildArea" type="ColorRect" parent="Container"]
+[node name="BuildArea" type="ColorRect" parent="Container" groups=["tower"]]
 visible = false
 margin_left = 48.0
 margin_top = 48.0

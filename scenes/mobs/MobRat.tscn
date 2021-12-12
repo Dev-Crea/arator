@@ -60,32 +60,32 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 13.5, 6 )
 
-[node name="MobRat" type="Node2D"]
+[node name="MobRat" type="Node2D" groups=["mobs"]]
 script = ExtResource( 2 )
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="." groups=["mobs"]]
 curve = SubResource( 12 )
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" groups=["mobs"]]
 rotate = false
 cubic_interp = false
 loop = false
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D" groups=["mobs"]]
 frames = ExtResource( 1 )
 animation = "walk"
 frame = 3
 
-[node name="explode" type="AnimatedSprite" parent="Path2D/PathFollow2D"]
+[node name="explode" type="AnimatedSprite" parent="Path2D/PathFollow2D" groups=["mobs"]]
 visible = false
 position = Vector2( 0, -17 )
 scale = Vector2( 0.05, 0.05 )
 frames = SubResource( 11 )
 frame = 2
 
-[node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D"]
+[node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D" groups=["mobs"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/hitbox" groups=["mobs"]]
 position = Vector2( -2.5, 3 )
 shape = SubResource( 21 )
 

@@ -31,13 +31,13 @@ func _hurt():
 	$Path2D/PathFollow2D/explode.visible = true
 
 func _death(tower):
-	print("DEATH !!!")
+	#print("DEATH !!!")
 	$Path2D/PathFollow2D/AnimatedSprite.play("death")
 	# warning-ignore:return_value_discarded
 	$Path2D/PathFollow2D/AnimatedSprite.connect("animation_finished", self, "units_animation_death")
-	print(tower)
+	#print(tower)
 	if (tower != null):
-		print("Emit Signal : attack_ended")
+		#print("Emit Signal : attack_ended")
 		tower.emit_signal("attack_ended")
 
 func set_curve(curve):
@@ -52,7 +52,7 @@ func units_animation_death():
 	self.queue_free()
 
 func _on_MobRat_hit(damage, tower = null):
-	print("[_on_MobRat_hit] with damage : ", damage)
+	#print("[_on_MobRat_hit] with damage : ", damage)
 	damaged = damage
 	life -= damage
 	_hurt()
@@ -62,7 +62,7 @@ func _on_MobRat_hit(damage, tower = null):
 		if !$Path2D/PathFollow2D/explode.is_connected("animation_finished", self, "units_animation_damage"):
 			# warning-ignore:return_value_discarded
 			$Path2D/PathFollow2D/explode.connect("animation_finished", self, "units_animation_damage", [tower])
-	print("Life : ", str(life))
+	#print("Life : ", str(life))
 
 # warning-ignore:unused_argument
 func _on_MobRat_stop_hit(damage):

@@ -55,12 +55,6 @@ func animation_idle():
 func animation_attack():
 	$Container/AnimatedSprite.play("attack")
 
-func _on_Attack_area_shape_entered(_area_rid, _area, _area_shape_index, _local_shape_index):
-	print("_on_Attack_area_shape_entered")
-
-func _on_Attack_area_shape_exited(_area_rid, _area, _area_shape_index, _local_shape_index):
-	print("_on_Attack_area_shape_exited")
-
 func _on_Hover_mouse_entered():
 	print("[_on_Hover_mouse_entered] Hover !")
 	attack_area(true)
@@ -99,25 +93,31 @@ func _hover():
 
 func _on_Attack_area_entered(area):
 	if (attack_mob == null):
-		attack_mob = area.get_parent().get_parent().get_parent()
-		print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
-		attack_mob.emit_signal("hit", 5, self)
+		print("[_on_Attack_area_entered] ", str(area))
+		print("[_on_Attack_area_entered] ", str(area.get_groups()))
+		if area.is_in_group("mobs"):
+			attack_mob = area.get_parent().get_parent().get_parent()
+			#print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
+			attack_mob.emit_signal("hit", 5, self)
 
-	list_mobs.push_back(attack_mob)
+		list_mobs.push_front(area)
+		# list_mobs.push_back(attack_mob)
+		print(list_mobs)
 
 func _on_Attack_area_exited(area):
-	var mob = area.get_parent().get_parent().get_parent()
-	print("[_on_Attack_area_exited] stop damage on unit : ", mob)
-	mob.emit_signal("stop_hit", 5)
-	print("[_on_Attack_area_exited] : ", str(list_mobs.size()))
+	if area.is_in_group("mobs"):
+		var mob = area.get_parent().get_parent().get_parent()
+		#print("[_on_Attack_area_exited] stop damage on unit : ", mob)
+		mob.emit_signal("stop_hit", 5)
+		#print("[_on_Attack_area_exited] : ", str(list_mobs.size()))
 
 func _on_TowerPunk_attack_ended():
-	print("_on_TowerPunk_attack_ended")
+	#print("_on_TowerPunk_attack_ended")
 	attack_mob = null
 	list_mobs.pop_front()
 	
-	print(list_mobs)
+	#print(list_mobs)
 	if !list_mobs.empty():
 		attack_mob = list_mobs[0]
-		print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
+		#print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
 		attack_mob.emit_signal("hit", 5, self)

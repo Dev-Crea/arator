@@ -8,8 +8,8 @@ signal timeout
 
 const WAVES = 20
 const TIME_START = 5
-const WAVES_INTERVAL = 25 			# 25 seconds
-const WAVES_MOB_INTERVAL = 1 		# 1 second
+const WAVES_INTERVAL = 25
+const WAVES_MOB_INTERVAL = 2
 const WAVES_MAX_MOB = 3
 
 var tower_selected = null
