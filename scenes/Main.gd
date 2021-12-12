@@ -7,7 +7,6 @@ const BUILD_INVALID = Color(255, 0, 0, 0.001)
 func _input(event):
 	_quit_game(event)
 	_move_camera(event)
-	_move_background()
 	_build_tower(event)
 
 func _quit_game(event):
@@ -26,10 +25,6 @@ func _move_camera(event):
 
 	if Actions.cameraTop(event) and $Camera.limit_top < $Camera.position.y:
 		$Camera.position.y -= TILE_SIZE
-
-func _move_background():
-	$Background.rect_global_position.x = $Camera.position.x
-	$Background.rect_global_position.y = $Camera.position.y
 
 func _build_tower(event):
 	if (

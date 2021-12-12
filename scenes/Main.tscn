@@ -3,10 +3,7 @@
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/levels/Ashland.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=3]
-
-[sub_resource type="StreamTexture" id=2]
-flags = 4
-load_path = "res://.import/background-ashland.jpg-b57e14958ba087cc8a52413ea866a954.stex"
+[ext_resource path="res://assets/background/background-ashland.jpg" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -18,14 +15,14 @@ __meta__ = {
 "_edit_vertical_guides_": [ 1352.0 ]
 }
 
-[node name="Background" type="TextureRect" parent="."]
-margin_right = 3000.0
-margin_bottom = 2000.0
-rect_scale = Vector2( 0.32, 0.32 )
-texture = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enable = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1682, 509 )
+texture = ExtResource( 4 )
 
 [node name="Ashland" parent="." instance=ExtResource( 2 )]
 

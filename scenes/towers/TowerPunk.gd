@@ -4,7 +4,11 @@ extends Node2D
 signal build(valid)
 # warning-ignore:unused_signal
 signal building
+# warning-ignore:unused_signal
+signal attack_ended
 
+onready var attack_mob = null
+onready var list_mobs = []
 onready var hover = false
 onready var selected = false
 onready var life = 20
@@ -51,46 +55,11 @@ func animation_idle():
 func animation_attack():
 	$Container/AnimatedSprite.play("attack")
 
-func _on_Degat_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
-	# print("[_on_Degat_area_shape_entered] Tower punk have damage ! ", area.is_in_group("mobs"))
-	# print(area)
-	if area.is_in_group("towers"):
-		print("damage towers")
-	
-	if area.is_in_group("level0"):
-		print("damage level0")
-	
-	if area.is_in_group("mobs"):
-		print("damage mobs")
-		# animation_hurt()
-	
-	# print(area.group)
+func _on_Attack_area_shape_entered(_area_rid, _area, _area_shape_index, _local_shape_index):
+	print("_on_Attack_area_shape_entered")
 
-func _on_Degat_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
-	# print("[_on_Degat_area_shape_exited] Tower punk stop degat ! ", area.is_in_group("mobs"))
-	if area.is_in_group("mobs"):
-		animation_idle()
-
-func _on_Attack_area_shape_entered(_area_rid, area, area_shape_index, _local_shape_index):
-	# print("[_on_Attack_area_shape_entered] Tower punk attack ! ", area.is_in_group("mobs"))
-	if area.is_in_group("mobs"):
-		animation_attack()
-		area.shape_owner_get_owner(area_shape_index).get_parent().get_parent().emit_signal("hit", attack)
-
-	if area.is_in_group("towers"):
-		print("damage towers")
-	
-	if area.is_in_group("level0"):
-		print("damage level0")
-	
-	if area.is_in_group("mobs"):
-		print("damage mobs")
-
-func _on_Attack_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
-	if area != null:
-		# print("[_on_Attack_area_shape_exited] Tower punk stop attack mob ! ", area.is_in_group("mob"))
-		if area.is_in_group("mob"):
-			animation_idle()
+func _on_Attack_area_shape_exited(_area_rid, _area, _area_shape_index, _local_shape_index):
+	print("_on_Attack_area_shape_exited")
 
 func _on_Hover_mouse_entered():
 	print("[_on_Hover_mouse_entered] Hover !")
@@ -128,14 +97,27 @@ func _hover():
 		mouse.y < $Container/Hover.global_position.y + 16
 	)
 
-
 func _on_Attack_area_entered(area):
-	print("_on_Attack_area_entered")
-	if area.is_in_group("towers"):
-		print("damage towers")
+	if (attack_mob == null):
+		attack_mob = area.get_parent().get_parent().get_parent()
+		print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
+		attack_mob.emit_signal("hit", 5, self)
+
+	list_mobs.push_back(attack_mob)
+
+func _on_Attack_area_exited(area):
+	var mob = area.get_parent().get_parent().get_parent()
+	print("[_on_Attack_area_exited] stop damage on unit : ", mob)
+	mob.emit_signal("stop_hit", 5)
+	print("[_on_Attack_area_exited] : ", str(list_mobs.size()))
+
+func _on_TowerPunk_attack_ended():
+	print("_on_TowerPunk_attack_ended")
+	attack_mob = null
+	list_mobs.pop_front()
 	
-	if area.is_in_group("level0"):
-		print("damage level0")
-	
-	if area.is_in_group("mobs"):
-		print("damage mobs")
+	print(list_mobs)
+	if !list_mobs.empty():
+		attack_mob = list_mobs[0]
+		print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
+		attack_mob.emit_signal("hit", 5, self)

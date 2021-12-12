@@ -45,3 +45,8 @@ func _on_Node2D_building(position):
 
 func _on_Waves_timeout():
 	_generate_mob()
+
+func _on_MobOut_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
+	Values.lifes -= 1
+	Values.update_lifes()
+	area.get_parent().get_parent().get_parent().queue_free()
