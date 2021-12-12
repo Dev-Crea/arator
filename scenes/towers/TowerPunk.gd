@@ -24,12 +24,12 @@ func _ready():
 		Values.connect("buy", Values, "update_coins")
 
 func attack_area(valid = true):
-	$Container/AttackArea.visible = valid
-	$Container/AttackArea.material.set_shader_param("swap_color", !valid)
+	$BuilderZone/Area/AttackAreaZone.visible = valid
+	$BuilderZone/Area/AttackAreaZone.material.set_shader_param("swap_color", !valid)
 
 func build_area(valid = true, visible = true):
-	$Container/BuildArea.visible = visible
-	$Container/BuildArea.color = _build_color(valid)
+	$BuilderZone/Area/Bulding.visible = visible
+	$BuilderZone/Area/Bulding.color = _build_color(valid)
 
 func _build_color(valid):
 	if valid:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/units/punk/sprite.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/towers/TowerPunk.gd" type="Script" id=2]
 [ext_resource path="res://shaders/AttackArea.tres" type="Shader" id=3]
+[ext_resource path="res://scenes/towers/BuilderZone.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 16, 16 )
@@ -84,6 +85,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BuilderZone" parent="." instance=ExtResource( 4 )]
+
+[node name="Bulding" parent="BuilderZone/Area" index="0"]
+visible = false
+
+[node name="AttackAreaZone" parent="BuilderZone/Area" index="1"]
+visible = false
+
 [connection signal="attack_ended" from="." to="." method="_on_TowerPunk_attack_ended"]
 [connection signal="area_entered" from="Container/Attack" to="." method="_on_Attack_area_entered"]
 [connection signal="area_exited" from="Container/Attack" to="." method="_on_Attack_area_exited"]
+
+[editable path="BuilderZone"]
