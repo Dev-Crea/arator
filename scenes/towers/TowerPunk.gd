@@ -32,12 +32,10 @@ func build_area(valid = true, visible = true):
 	$Container/BuildArea.color = _build_color(valid)
 
 func _build_color(valid):
-	var alpha = 0.001
-	
 	if valid:
-		return Color(0, 255, 0, alpha)
+		return Constants.COLOR_BUILD_VALID
 	else:
-		return Color(255, 0, 0, alpha)
+		return Constants.COLOR_BUILD_INVALID
 
 func pay():
 	Values.coins -= Towers.punk_price()

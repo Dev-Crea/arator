@@ -1,9 +1,5 @@
 extends Node
 
-const TILE_SIZE = 32
-const BUILD_VALID = Color(0, 255, 0, 0.001)
-const BUILD_INVALID = Color(255, 0, 0, 0.001)
-
 func _input(event):
 	_quit_game(event)
 	_move_camera(event)
@@ -15,16 +11,16 @@ func _quit_game(event):
 
 func _move_camera(event):
 	if Actions.cameraRight(event) and $Camera.limit_right - _width() > $Camera.position.x:
-		$Camera.position.x = $Camera.position.x + TILE_SIZE
+		$Camera.position.x = $Camera.position.x + Constants.TILE_SIZE
 	
 	if Actions.cameraLeft(event) and $Camera.limit_left < $Camera.position.x:
-		$Camera.position.x -= TILE_SIZE
+		$Camera.position.x -= Constants.TILE_SIZE
 
-	if Actions.cameraBottom(event) and ($Camera.limit_bottom + TILE_SIZE * 2) - _height() > $Camera.position.y:
-		$Camera.position.y += TILE_SIZE
+	if Actions.cameraBottom(event) and ($Camera.limit_bottom + Constants.TILE_SIZE * 2) - _height() > $Camera.position.y:
+		$Camera.position.y += Constants.TILE_SIZE
 
 	if Actions.cameraTop(event) and $Camera.limit_top < $Camera.position.y:
-		$Camera.position.y -= TILE_SIZE
+		$Camera.position.y -= Constants.TILE_SIZE
 
 func _build_tower(event):
 	if (
@@ -68,17 +64,17 @@ func _process(_delta):
 		$CursorBuild.rect_global_position = _arround_position()
 
 func _arround_position():
-	var position = get_viewport().get_mouse_position() / TILE_SIZE
+	var position = get_viewport().get_mouse_position() / Constants.TILE_SIZE
 	
-	return Vector2(int(position.x) * TILE_SIZE, int(position.y) * TILE_SIZE)
+	return Vector2(int(position.x) * Constants.TILE_SIZE, int(position.y) * Constants.TILE_SIZE)
 
 func _on_Build_body_entered(body):
 	if _check_build_authorized(body):
-		$CursorBuild.color = BUILD_INVALID
+		$CursorBuild.color = Constants.COLOR_BUILD_INVALID
 
 func _on_Build_body_exited(body):
 	if _check_build_authorized(body):
-		$CursorBuild.color = BUILD_VALID
+		$CursorBuild.color = Constants.COLOR_BUILD_VALID
 
 func _check_build_authorized(body):
 	return body.is_in_group("map") or body.is_in_group("tower")
