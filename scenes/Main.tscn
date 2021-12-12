@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/levels/Ashland.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=3]
-[ext_resource path="res://assets/background/background-ashland.jpg" type="Texture" id=4]
 [ext_resource path="res://scenes/towers/BuilderZone.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
@@ -13,16 +11,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 1352.0, 1344.0, -24.0 ]
 }
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-follow_viewport_enable = true
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 1682, 509 )
-texture = ExtResource( 4 )
-
-[node name="Ashland" parent="." instance=ExtResource( 2 )]
+[node name="Levels" type="Node2D" parent="."]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( -39, -75 )
@@ -43,6 +32,5 @@ visible = false
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer/punk" to="." method="_on_tower_punk_pressed"]
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer/cyborg" to="." method="_on_tower_cyborg_pressed"]
 
-[editable path="Ashland"]
 [editable path="Camera/HUD"]
 [editable path="BuilderZone"]

@@ -53,14 +53,6 @@ func animation_idle():
 func animation_attack():
 	$Container/AnimatedSprite.play("attack")
 
-func _on_Hover_mouse_entered():
-	print("[_on_Hover_mouse_entered] Hover !")
-	attack_area(true)
-
-func _on_Hover_mouse_exited():
-	print("[_on_Hover_mouse_exited] END Hover !")
-	attack_area(false)
-
 func _physics_process(_delta):
 	if _hover():
 		attack_area(true)

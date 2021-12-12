@@ -4,5 +4,6 @@ var current_level = 0
 
 func levels():
 	return [
-		"Ashland"
+		"AshLand",
+		"EarthLand"
 	]

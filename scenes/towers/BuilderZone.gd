@@ -13,6 +13,5 @@ func scaling_area_attack():
 		$Area/AttackAreaZone.rect_position = Vector2(position, position)
 
 func _on_BuilderZone_visibility_changed():
-	print("View builder zone")
 	if visible:
 		scaling_area_attack()

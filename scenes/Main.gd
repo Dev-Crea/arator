@@ -1,5 +1,9 @@
 extends Node
 
+func _ready():
+	$Levels.add_child(load("res://scenes/levels/AshLand.tscn").instance())
+	# $Levels.add_child(load("res://scenes/levels/EarthLand.tscn").instance())
+
 func _input(event):
 	_quit_game(event)
 	_move_camera(event)
@@ -51,7 +55,7 @@ func _building_tower():
 	position.y += 16
 	
 	# warning-ignore:return_value_discarded
-	$Ashland.emit_signal("building", position)
+	$Levels.get_children()[0].emit_signal("building", position)
 
 func _width():
 	return OS.get_real_window_size()[0]
