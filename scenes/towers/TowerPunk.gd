@@ -117,5 +117,6 @@ func _on_TowerPunk_attack_ended():
 	#print(list_mobs)
 	if !list_mobs.empty():
 		attack_mob = list_mobs[0]
-		#print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
-		attack_mob.emit_signal("hit", 5, self)
+		if is_instance_valid(attack_mob):
+			#print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
+			attack_mob.emit_signal("hit", 5, self)

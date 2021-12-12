@@ -58,7 +58,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 13.5, 6 )
+extents = Vector2( 12.5, 4.5 )
 
 [node name="MobRat" type="Node2D" groups=["mobs"]]
 script = ExtResource( 2 )
@@ -86,7 +86,7 @@ frame = 2
 [node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D" groups=["mobs"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/hitbox" groups=["mobs"]]
-position = Vector2( -2.5, 3 )
+position = Vector2( -2.5, 3.5 )
 shape = SubResource( 21 )
 
 [connection signal="hit" from="." to="." method="_on_MobRat_hit"]
