@@ -51,3 +51,5 @@ position = Vector2( 16, 16 )
 shape = SubResource( 2 )
 
 [connection signal="visibility_changed" from="." to="." method="_on_BuilderZone_visibility_changed"]
+[connection signal="area_entered" from="Area/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area/Area2D" to="." method="_on_Area2D_area_exited"]

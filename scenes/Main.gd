@@ -1,8 +1,7 @@
 extends Node
 
 func _ready():
-	$Levels.add_child(load("res://scenes/levels/AshLand.tscn").instance())
-	# $Levels.add_child(load("res://scenes/levels/EarthLand.tscn").instance())
+	$Levels.add_child(Maps.next_level())
 
 func _input(event):
 	_quit_game(event)
@@ -81,7 +80,8 @@ func _on_Build_body_exited(body):
 		$BuilderZone/Area/Bulding.color = Constants.COLOR_BUILD_VALID
 
 func _check_build_authorized(body):
-	return body.is_in_group("map") or body.is_in_group("tower")
+	print("build authorized ? ", body.get_groups())
+	return body.is_in_group("maps") or body.is_in_group("towers")
 
 func _on_tower_punk_pressed():
 	Towers.select(Towers.PUNK)

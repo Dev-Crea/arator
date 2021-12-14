@@ -21,6 +21,7 @@ Values="*res://scripts/Values.gd"
 Actions="*res://scripts/Actions.gd"
 Towers="*res://scripts/Towers.gd"
 Constants="*res://scripts/Constants.gd"
+Maps="*res://scripts/Maps.gd"
 
 [display]
 
