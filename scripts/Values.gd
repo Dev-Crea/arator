@@ -67,6 +67,5 @@ func _path(more):
 	return get_node("/root/Main/Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/" + more)
 
 func buy_object(value):
-	print("ACHAT : "+str(value))
 	self.coins -= value
 	update_coins()
