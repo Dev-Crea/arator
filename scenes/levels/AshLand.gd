@@ -10,7 +10,6 @@ const WAVES_MOB_INTERVAL = 1
 
 var waves_max_mob = 0
 var waves_mob_generated = 0
-var tower_selected = null
 var waves_current = 0
 var waves_timeout = 0
 

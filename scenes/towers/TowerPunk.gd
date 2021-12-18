@@ -6,6 +6,8 @@ signal build(valid)
 signal building
 # warning-ignore:unused_signal
 signal attack_ended
+# warning-ignore:unused_signal
+signal update
 
 onready var attack_mob = null
 onready var list_mobs = []
@@ -13,15 +15,32 @@ onready var hover = false
 onready var selected = false
 onready var life = 20
 onready var attack = 5
-onready var level = 1
+onready var level = 0
+onready var level_max = 3
 onready var range_attack = 1
 onready var resource_icon = "res://assets/units/punk/icon.png"
 
+func update_level(add_life, add_attack, add_range_attack):
+	life += add_life
+	attack += add_attack
+	range_attack += add_range_attack
+	update_info_level()
+	Values.emit_signal("buy", Towers.punk_price_level())
+
+func level_1():
+	print("update to level 1")
+	update_level(5, 3, 1)
+
+func level_2():
+	print("update to level 2")
+	update_level(10, 5, 0.5)
+
+func level_3():
+	print("update to level 3")
+	update_level(2, 15, 0.5)
+
 func _ready():
 	animation_idle()
-	if !Values.is_connected("buy", Values, "update_coins"):
-		# warning-ignore:return_value_discarded
-		Values.connect("buy", Values, "update_coins")
 
 func attack_area(valid = true):
 	$BuilderZone/Area/AttackAreaZone.visible = valid
@@ -38,8 +57,7 @@ func _build_color(valid):
 		return Constants.COLOR_BUILD_INVALID
 
 func pay():
-	Values.coins -= Towers.punk_price()
-	Values.emit_signal("buy")
+	Values.emit_signal("buy", Towers.punk_price())
 
 func animation_hurt():
 	$Container/AnimatedSprite.play("hurt")
@@ -63,13 +81,17 @@ func _physics_process(_delta):
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed() and hover:
-		Values.select_icon = resource_icon
-		Values.select_life = "Vie : "+ str(life)
-		Values.select_damage = "Dégats : " + str(attack)
-		Values.select_range = "Portée : " + str(range_attack)
-		Values.select_level = "Niveaux : " + str(level)
-		Values.update_select_info()
-		selected = true
+		update_info_level()
+
+func update_info_level():
+	Values.select_icon = resource_icon
+	Values.select_life = "Vie : "+ str(life)
+	Values.select_damage = "Dégats : " + str(attack)
+	Values.select_range = "Portée : " + str(range_attack)
+	Values.select_level = "Niveaux : " + str(level)
+	Values.update_select_info()
+	selected = true
+	Towers.node = self
 
 func _hover():
 	var mouse = get_global_mouse_position()
@@ -112,3 +134,17 @@ func _on_TowerPunk_attack_ended():
 		if is_instance_valid(attack_mob):
 			#print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
 			attack_mob.emit_signal("hit", 5, self)
+
+func _on_update_level():
+	print("[TowerPunk] Update tower !")
+	if updatable():
+		print("ok")
+		level += 1
+		call("level_"+str(level))
+	else:
+		print("level_max ? "+str(level))
+		print("missing coins ?? "+str(Towers.punk_price_level())+" < "+str(Values.coins))
+
+func updatable():
+	print("updatable ?? "+str(level < level_max)+" and "+str(Towers.punk_price_level() < Values.coins))
+	return level < level_max and Towers.punk_price_level() < Values.coins

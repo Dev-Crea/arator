@@ -16,9 +16,9 @@ onready var offset = 0
 func _ready():
 	_walk()
 	
-	if !Values.is_connected("buy", Values, "update_coins"):
-		# warning-ignore:return_value_discarded
-		Values.connect("buy", Values, "update_coins")
+	#if !Values.is_connected("buy", Values, "update_coins"):
+	#	# warning-ignore:return_value_discarded
+	#	Values.connect("buy", Values, "update_coins")
 
 func _walk():
 	$Path2D/PathFollow2D/AnimatedSprite.play("walk")
@@ -47,8 +47,7 @@ func units_animation_damage(tower):
 	_on_MobRat_hit(damaged, tower)
 
 func units_animation_death():
-	Values.coins += VALUE
-	Values.emit_signal("buy")
+	Values.emit_signal("buy", -VALUE)
 	self.queue_free()
 
 func _on_MobRat_hit(damage, tower = null):

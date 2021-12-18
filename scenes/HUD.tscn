@@ -194,17 +194,17 @@ margin_bottom = 40.0
 size_flags_horizontal = 3
 
 [node name="ColorRect" type="ColorRect" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info"]
-margin_left = -8.0
-margin_top = -5.0
-margin_right = 192.0
-margin_bottom = 39.0
+margin_right = 50.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color( 0.148575, 0.197477, 0.355469, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect"]
-visible = false
 margin_top = 2.0
 margin_right = 40.0
 margin_bottom = 40.0

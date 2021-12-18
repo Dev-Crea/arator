@@ -69,6 +69,7 @@ visible = false
 visible = false
 
 [connection signal="attack_ended" from="." to="." method="_on_TowerPunk_attack_ended"]
+[connection signal="update" from="." to="." method="_on_update_level"]
 [connection signal="area_entered" from="Container/Attack" to="." method="_on_Attack_area_entered"]
 [connection signal="area_exited" from="Container/Attack" to="." method="_on_Attack_area_exited"]
 

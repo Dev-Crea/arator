@@ -1,5 +1,6 @@
 extends Node
 
+# warning-ignore:unused_signal
 signal new_wave
 
 onready var chronometer = Constants.START_TIME
@@ -84,7 +85,7 @@ func _on_Build_body_exited(body):
 		$BuilderZone/Area/Bulding.color = Constants.COLOR_BUILD_VALID
 
 func _check_build_authorized(body):
-	print("build authorized ? ", body.get_groups())
+	# print("build authorized ? ", body.get_groups())
 	return body.is_in_group("maps") or body.is_in_group("towers")
 
 func _on_tower_punk_pressed():
@@ -96,7 +97,7 @@ func _on_tower_cyborg_pressed():
 	$BuilderZone.visible = true
 
 func _on_Main_new_wave():
-	pass
+	print("_on_Main_new_wave")
 
 func _on_Main_start_wave():
 	$StartTime/Chrono.disconnect("timeout", self, "_on_Chrono_timeout")
@@ -107,6 +108,8 @@ func _on_Main_start_wave():
 	Values.start = true
 
 func _on_Chrono_timeout():
-	print("_on_Chrono_timeout()")
 	chronometer -= 1
 	$TimerStart/CenterContainer/Label.text = "Start in "+str(chronometer)
+
+func _on_update_pressed():
+	Towers.node.emit_signal("update")
