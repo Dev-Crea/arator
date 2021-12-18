@@ -13,6 +13,10 @@ func _input(event):
 	_move_camera(event)
 	_build_tower(event)
 
+func _process(_delta):
+	if Towers.selected:
+		$BuilderZone/Area.rect_global_position = _arround_position()
+
 func _quit_game(event):
 	if Actions.quitGame(event):
 		get_tree().quit() 
@@ -39,7 +43,10 @@ func _build_tower(event):
 		if Towers.selected:
 			if Values.coins >= Towers.price:
 				_building_tower()
-
+		#else:
+			#print("unselect")
+			# Towers.unselect()
+		
 	if (
 		event is InputEventMouseButton and 
 		event.button_index == BUTTON_RIGHT and 
@@ -66,10 +73,6 @@ func _width():
 
 func _height():
 	return OS.get_real_window_size()[1]
-
-func _process(_delta):
-	if Towers.selected:
-		$BuilderZone/Area.rect_global_position = _arround_position()
 
 func _arround_position():
 	var position = get_viewport().get_mouse_position() / Constants.TILE_SIZE
