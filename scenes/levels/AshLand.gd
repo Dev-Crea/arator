@@ -21,7 +21,7 @@ func _ready():
 
 func _process(delta):
 	waves_timeout += delta
-	if waves_timeout > WAVES_MOB_INTERVAL and waves_current < WAVES_MAX_MOB :
+	if waves_timeout > WAVES_MOB_INTERVAL and waves_current < WAVES_MAX_MOB and Values.start:
 		emit_signal("timeout")
 		waves_timeout = 0
 		waves_current += 1

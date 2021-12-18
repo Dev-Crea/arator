@@ -5,6 +5,7 @@ signal buy()
 # warning-ignore:unused_signal
 signal enemi_escape()
 
+var start = false
 var lifes: int
 var coins: int
 var select_icon: String

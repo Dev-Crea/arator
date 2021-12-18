@@ -1,7 +1,9 @@
 extends Node
 
+onready var chronometer = Constants.START_TIME
+
 func _ready():
-	$Levels.add_child(Maps.next_level())
+	$Level.add_child(Maps.next_level())
 
 func _input(event):
 	_quit_game(event)
@@ -14,7 +16,7 @@ func _quit_game(event):
 
 func _move_camera(event):
 	if Actions.cameraRight(event) and $Camera.limit_right - _width() > $Camera.position.x:
-		$Camera.position.x = $Camera.position.x + Constants.TILE_SIZE
+		$Camera.position.x += Constants.TILE_SIZE
 	
 	if Actions.cameraLeft(event) and $Camera.limit_left < $Camera.position.x:
 		$Camera.position.x -= Constants.TILE_SIZE
@@ -54,7 +56,7 @@ func _building_tower():
 	position.y += 16
 	
 	# warning-ignore:return_value_discarded
-	$Levels.get_children()[0].emit_signal("building", position)
+	$Level.get_children()[0].emit_signal("building", position)
 
 func _width():
 	return OS.get_real_window_size()[0]
@@ -90,3 +92,15 @@ func _on_tower_punk_pressed():
 func _on_tower_cyborg_pressed():
 	Towers.select(Towers.CYBORG)
 	$BuilderZone.visible = true
+
+func _on_Main_start_wave():
+	print("Start time")
+	$StartTime/Chrono.disconnect("timeout", self, "_on_Chrono_timeout")
+	$StartTime/Chrono.free()
+	$StartTime.disconnect("timeout", self, "_on_Main_start_wave")
+	$TimerStart.free()
+	Values.start = true
+
+func _on_Chrono_timeout():
+	chronometer -= 1
+	$TimerStart/CenterContainer/Label.text = "Start in "+str(chronometer)
