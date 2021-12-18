@@ -7,5 +7,4 @@ func _ready():
 	resource_icon = "res://assets/units/cyborg/icon.png"
 
 func pay():
-	Values.coins -= Towers.cyborg_price()
-	Values.emit_signal("buy")
+	Values.emit_signal("buy", Towers.cyborg_price())

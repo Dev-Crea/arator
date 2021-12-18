@@ -16,6 +16,20 @@ func scaling_area_attack():
 		$Area/AttackAreaZone.rect_scale = Vector2(size, size)
 		$Area/AttackAreaZone.rect_position = Vector2(position, position)
 
+func update_scaling_area_attack(scaling):
+	var scale = $Area/AttackAreaZone.rect_scale
+	var size = int(($Area/AttackAreaZone.rect_size.x * scaling) / 2)
+	var pos = $Area/AttackAreaZone.rect_global_position
+
+	scale.x += scaling
+	scale.y += scaling
+	
+	pos.x -= size
+	pos.y -= size
+	
+	$Area/AttackAreaZone.rect_scale = scale
+	$Area/AttackAreaZone.rect_global_position = pos
+
 func _check_build_authorized(body):
 	# print("build authorized ? ", body.get_groups())
 	return body.is_in_group("maps") or body.is_in_group("towers")

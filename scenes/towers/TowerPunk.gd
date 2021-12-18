@@ -26,10 +26,11 @@ func update_level(add_life, add_attack, add_range_attack):
 	range_attack += add_range_attack
 	update_info_level()
 	Values.emit_signal("buy", Towers.punk_price_level())
+	$BuilderZone.update_scaling_area_attack(add_range_attack)
 
 func level_1():
 	print("update to level 1")
-	update_level(5, 3, 1)
+	update_level(5, 3, 0.5)
 
 func level_2():
 	print("update to level 2")
@@ -37,10 +38,12 @@ func level_2():
 
 func level_3():
 	print("update to level 3")
-	update_level(2, 15, 0.5)
+	update_level(2, 15, 1)
 
 func _ready():
 	animation_idle()
+	attack_area(true)
+	hover = true
 
 func attack_area(valid = true):
 	$BuilderZone/Area/AttackAreaZone.visible = valid
@@ -72,12 +75,13 @@ func animation_attack():
 	$Container/AnimatedSprite.play("attack")
 
 func _physics_process(_delta):
-	if _hover():
-		attack_area(true)
-		hover = true
-	else:
-		attack_area(false)
-		hover = false
+	#if _hover():
+	#	attack_area(true)
+	#	hover = true
+	#else:
+	#	attack_area(false)
+	#	hover = false
+	pass
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed() and hover:
@@ -136,15 +140,9 @@ func _on_TowerPunk_attack_ended():
 			attack_mob.emit_signal("hit", 5, self)
 
 func _on_update_level():
-	print("[TowerPunk] Update tower !")
 	if updatable():
-		print("ok")
 		level += 1
 		call("level_"+str(level))
-	else:
-		print("level_max ? "+str(level))
-		print("missing coins ?? "+str(Towers.punk_price_level())+" < "+str(Values.coins))
 
 func updatable():
-	print("updatable ?? "+str(level < level_max)+" and "+str(Towers.punk_price_level() < Values.coins))
 	return level < level_max and Towers.punk_price_level() < Values.coins
