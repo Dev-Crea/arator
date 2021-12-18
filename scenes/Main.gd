@@ -1,5 +1,7 @@
 extends Node
 
+signal new_wave
+
 onready var chronometer = Constants.START_TIME
 
 func _ready():
@@ -93,14 +95,18 @@ func _on_tower_cyborg_pressed():
 	Towers.select(Towers.CYBORG)
 	$BuilderZone.visible = true
 
+func _on_Main_new_wave():
+	pass
+
 func _on_Main_start_wave():
-	print("Start time")
 	$StartTime/Chrono.disconnect("timeout", self, "_on_Chrono_timeout")
-	$StartTime/Chrono.free()
+	# $StartTime/Chrono.free()
 	$StartTime.disconnect("timeout", self, "_on_Main_start_wave")
-	$TimerStart.free()
+	# $TimerStart.free()
+	$TimerStart/CenterContainer.visible = false
 	Values.start = true
 
 func _on_Chrono_timeout():
+	print("_on_Chrono_timeout()")
 	chronometer -= 1
 	$TimerStart/CenterContainer/Label.text = "Start in "+str(chronometer)

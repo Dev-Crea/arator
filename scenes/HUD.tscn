@@ -162,20 +162,29 @@ margin_right = 148.0
 margin_bottom = 40.0
 
 [node name="current" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/waves/HBoxContainer"]
-margin_right = 72.0
+margin_right = 67.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "5"
-align = 2
+text = "0"
+align = 1
+valign = 1
+
+[node name="slash" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/waves/HBoxContainer"]
+margin_left = 71.0
+margin_right = 76.0
+margin_bottom = 14.0
+text = "/"
+align = 1
 valign = 1
 
 [node name="total" type="Label" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/waves/HBoxContainer"]
-margin_left = 76.0
+margin_left = 80.0
 margin_right = 148.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "/ 32"
+text = "0"
+align = 1
 valign = 1
 
 [node name="info" type="Control" parent="HBoxContainer/ColorRect/TileMap/Control/HBoxContainer"]

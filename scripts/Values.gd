@@ -5,18 +5,21 @@ signal buy()
 # warning-ignore:unused_signal
 signal enemi_escape()
 
+var current_wave = 0
 var start = false
 var lifes: int
 var coins: int
+var waves: int
 var select_icon: String
 var select_life: String
 var select_damage: String
 var select_level: String
 var select_range: String
 
-func initialize_level(level_lifes, level_coins):
+func initialize_level(level_lifes, level_coins, waves):
 	self.lifes = level_lifes
 	self.coins = level_coins
+	self.waves = waves.size()
 	
 	self.select_icon = ""
 	self.select_life = ""
@@ -24,12 +27,19 @@ func initialize_level(level_lifes, level_coins):
 	self.select_level = ""
 	self.select_range = ""
 	_path("info/ColorRect/HBoxContainer/update").visible = false
+	
+	update_coins()
+	update_lifes()
+	update_waves()
 
 func update_coins():
 	_path("game/VBoxContainer/coins/Label").text = str(coins)
 
 func update_lifes():
 	_path("game/VBoxContainer/lifes/Label").text = str(lifes)
+
+func update_waves():
+	_path("game/waves/HBoxContainer/total").text = str(waves)
 
 func unselect_info():
 	select_life = ""
