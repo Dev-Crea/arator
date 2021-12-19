@@ -86,17 +86,10 @@ margin_bottom = 98.0
 size_flags_horizontal = 3
 text = "Quit"
 
-[node name="version" type="Label" parent="CenterContainer/HBoxContainer/menu"]
+[node name="title2" type="ColorRect" parent="CenterContainer/HBoxContainer/menu"]
 margin_top = 102.0
 margin_right = 300.0
-margin_bottom = 116.0
-align = 1
-valign = 1
-
-[node name="title2" type="ColorRect" parent="CenterContainer/HBoxContainer/menu"]
-margin_top = 120.0
-margin_right = 300.0
-margin_bottom = 170.0
+margin_bottom = 152.0
 rect_min_size = Vector2( 300, 50 )
 color = Color( 0, 0, 0, 0.607843 )
 
@@ -113,23 +106,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MultiplayerBtn" type="HBoxContainer" parent="CenterContainer/HBoxContainer/menu"]
-margin_top = 174.0
+[node name="multi-create" type="Button" parent="CenterContainer/HBoxContainer/menu"]
+margin_top = 156.0
 margin_right = 300.0
-margin_bottom = 194.0
-
-[node name="multi-create" type="Button" parent="CenterContainer/HBoxContainer/menu/MultiplayerBtn"]
-margin_right = 148.0
-margin_bottom = 20.0
+margin_bottom = 176.0
 size_flags_horizontal = 3
 text = "Create Server"
 
-[node name="multi-join" type="Button" parent="CenterContainer/HBoxContainer/menu/MultiplayerBtn"]
-margin_left = 152.0
+[node name="multi-join" type="HBoxContainer" parent="CenterContainer/HBoxContainer/menu"]
+margin_top = 180.0
 margin_right = 300.0
+margin_bottom = 200.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="CenterContainer/HBoxContainer/menu/multi-join"]
+margin_right = 232.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
-text = "Connect Server"
+text = "192.168.0.1"
+
+[node name="Button" type="Button" parent="CenterContainer/HBoxContainer/menu/multi-join"]
+margin_left = 236.0
+margin_right = 300.0
+margin_bottom = 20.0
+text = "Connect"
+
+[node name="version" type="Label" parent="CenterContainer/HBoxContainer/menu"]
+margin_top = 204.0
+margin_right = 300.0
+margin_bottom = 218.0
+align = 1
+valign = 1
 
 [node name="right" type="CenterContainer" parent="CenterContainer/HBoxContainer"]
 margin_left = 308.0
@@ -140,5 +150,5 @@ size_flags_vertical = 3
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/menu/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/menu/quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="CenterContainer/HBoxContainer/menu/MultiplayerBtn/multi-create" to="." method="_on_game_multi_create_pressed"]
-[connection signal="pressed" from="CenterContainer/HBoxContainer/menu/MultiplayerBtn/multi-join" to="." method="_on_game_multi_join_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/menu/multi-create" to="." method="_on_game_multi_create_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/menu/multi-join/Button" to="." method="_on_game_multi_join_pressed"]
