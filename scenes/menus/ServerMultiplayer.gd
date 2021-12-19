@@ -1,8 +1,11 @@
 extends Control
 
-# Called when the node enters the scene tree for the first time.
+onready var peer = NetworkedMultiplayerENet.new()
+
 func _ready():
-	var peer = NetworkedMultiplayerENet.new()
+	_create_server()
+
+func _create_server():
 	peer.create_server(Constants.SERVER_PORT, Constants.MAX_PLAYERS)
 	get_tree().network_peer = peer
 	
@@ -10,3 +13,7 @@ func _ready():
 		print("Is network server !")
 	else:
 		print("Is not network server")
+
+func join_server(ip):
+	peer.create_client(ip, Constants.SERVER_PORT)
+	get_tree().network_peer = peer
