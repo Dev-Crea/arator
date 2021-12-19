@@ -52,7 +52,6 @@ margin_right = 304.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 300, 300 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="title" type="ColorRect" parent="CenterContainer/HBoxContainer/menu"]
 margin_right = 300.0
@@ -93,6 +92,44 @@ margin_right = 300.0
 margin_bottom = 116.0
 align = 1
 valign = 1
+
+[node name="title2" type="ColorRect" parent="CenterContainer/HBoxContainer/menu"]
+margin_top = 120.0
+margin_right = 300.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 300, 50 )
+color = Color( 0, 0, 0, 0.607843 )
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer/menu/title2"]
+margin_right = 300.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Multiplayer"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MultiplayerBtn" type="HBoxContainer" parent="CenterContainer/HBoxContainer/menu"]
+margin_top = 174.0
+margin_right = 300.0
+margin_bottom = 194.0
+
+[node name="multi-create" type="Button" parent="CenterContainer/HBoxContainer/menu/MultiplayerBtn"]
+margin_right = 148.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Create Server"
+
+[node name="multi-join" type="Button" parent="CenterContainer/HBoxContainer/menu/MultiplayerBtn"]
+margin_left = 152.0
+margin_right = 300.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Connect Server"
 
 [node name="right" type="CenterContainer" parent="CenterContainer/HBoxContainer"]
 margin_left = 308.0
