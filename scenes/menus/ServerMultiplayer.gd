@@ -10,9 +10,10 @@ func _ready():
 func _connect_network():
 	print("[ServerMultiplayer] _ready() | "+str(Values.multi_player_host))
 	if Values.multi_player_host == null:
-		_create_server()
+		peer.create_server(Constants.SERVER_PORT, Constants.MAX_PLAYERS)
 	else:
-		_join_server()
+		peer.create_client(Values.multi_player_host, Constants.SERVER_PORT)
+	get_tree().set_network_peer(peer)
 
 func _info_type_network():
 	if get_tree().is_network_server():
@@ -31,16 +32,6 @@ func _connect_signals():
 	get_tree().connect("connection_failed", self, "_connected_fail")
 	# warning-ignore:return_value_discarded
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
-
-func _create_server():
-	print("Create Server")
-	peer.create_server(Constants.SERVER_PORT, Constants.MAX_PLAYERS)
-	get_tree().network_peer = peer
-
-func _join_server():
-	print("Join Server")
-	peer.create_client(Values.multi_player_host, Constants.SERVER_PORT)
-	get_tree().network_peer = peer
 
 func _on_ChatInput_text_entered(new_text):
 	var id = get_tree().get_network_unique_id()
