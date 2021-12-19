@@ -70,6 +70,8 @@ autostart = true
 [node name="Chrono" type="Timer" parent="StartTime"]
 autostart = true
 
+[node name="Players" type="Node2D" parent="."]
+
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer/update" to="." method="_on_update_pressed"]
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer/punk" to="." method="_on_tower_punk_pressed"]
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer/cyborg" to="." method="_on_tower_cyborg_pressed"]
