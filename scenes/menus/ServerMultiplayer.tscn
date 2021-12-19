@@ -66,3 +66,5 @@ margin_top = 588.0
 margin_right = 224.0
 margin_bottom = 608.0
 text = "ok"
+
+[connection signal="text_entered" from="HBoxContainer/Players/VBoxContainer/ChatInput" to="." method="_on_ChatInput_text_entered"]

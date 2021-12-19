@@ -23,3 +23,7 @@ func _join_server():
 	print("Join Server")
 	peer.create_client(Values.multi_player_host, Constants.SERVER_PORT)
 	get_tree().network_peer = peer
+
+func _on_ChatInput_text_entered(new_text):
+	$HBoxContainer/Players/VBoxContainer/ChatInput.text = ""
+	$HBoxContainer/Players/VBoxContainer/ChatOutput.text += "\n"+new_text
