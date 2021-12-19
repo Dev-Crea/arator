@@ -16,8 +16,6 @@ onready var chronometer = Constants.START_TIME
 
 func _ready():
 	# warning-ignore:return_value_discarded
-	connect("new_wave", self, "_on_wave_new")
-	# warning-ignore:return_value_discarded
 	connect("end_wave", self, "_on_wave_end")
 	# warning-ignore:return_value_discarded
 	connect("timeout_start_time", self, "_on_timeout_start_time")
