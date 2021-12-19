@@ -1,6 +1,7 @@
 extends Node
 
 var current_level = null
+var node = null
 
 func next_level():
 	if current_level == null:

@@ -109,8 +109,8 @@ func _hover():
 
 func _on_Attack_area_entered(area):
 	if (attack_mob == null):
-		print("[_on_Attack_area_entered] ", str(area))
-		print("[_on_Attack_area_entered] ", str(area.get_groups()))
+		#print("[_on_Attack_area_entered] ", str(area))
+		#print("[_on_Attack_area_entered] ", str(area.get_groups()))
 		if area.is_in_group("mobs"):
 			attack_mob = area.get_parent().get_parent().get_parent()
 			#print("[_on_Attack_area_entered] start damage on unit : ", attack_mob)
@@ -118,7 +118,7 @@ func _on_Attack_area_entered(area):
 
 		list_mobs.push_front(area)
 		# list_mobs.push_back(attack_mob)
-		print(list_mobs)
+		#print(list_mobs)
 
 func _on_Attack_area_exited(area):
 	if area.is_in_group("mobs"):

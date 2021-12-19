@@ -39,6 +39,7 @@ func _death(tower):
 	if (tower != null):
 		#print("Emit Signal : attack_ended")
 		tower.emit_signal("attack_ended")
+	Waves.mob_death -= 1
 
 func set_curve(curve):
 	$Path2D.set_curve(curve)

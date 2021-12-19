@@ -1,12 +1,11 @@
 extends Node
 
-# warning-ignore:unused_signal
-signal new_wave
-
-onready var chronometer = Constants.START_TIME
-
 func _ready():
 	$Level.add_child(Maps.next_level())
+	# warning-ignore:return_value_discarded
+	$StartTime/Chrono.connect("timeout", Waves, "_on_timeout_chronometer")
+	# warning-ignore:return_value_discarded
+	$StartTime.connect("timeout", Waves, "_on_timeout_start_time")
 
 func _input(event):
 	_quit_game(event)
@@ -102,17 +101,17 @@ func _on_tower_cyborg_pressed():
 func _on_Main_new_wave():
 	print("_on_Main_new_wave")
 
-func _on_Main_start_wave():
-	$StartTime/Chrono.disconnect("timeout", self, "_on_Chrono_timeout")
-	# $StartTime/Chrono.free()
-	$StartTime.disconnect("timeout", self, "_on_Main_start_wave")
-	# $TimerStart.free()
-	$TimerStart/CenterContainer.visible = false
-	Values.start = true
+#func _on_Main_start_wave():
+#	$StartTime/Chrono.disconnect("timeout", self, "_on_Chrono_timeout")
+#	# $StartTime/Chrono.free()
+#	$StartTime.disconnect("timeout", self, "_on_Main_start_wave")
+#	# $TimerStart.free()
+#	$TimerStart/CenterContainer.visible = false
+#	Values.start = true
 
-func _on_Chrono_timeout():
-	chronometer -= 1
-	$TimerStart/CenterContainer/Label.text = "Start in "+str(chronometer)
+#func _on_Chrono_timeout():
+#	chronometer -= 1
+#	$TimerStart/CenterContainer/Label.text = "Start in "+str(chronometer)
 
 func _on_update_pressed():
 	Towers.node.emit_signal("update")

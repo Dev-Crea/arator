@@ -35,6 +35,9 @@ func initialize_level(level_lifes, level_coins, array_waves):
 	update_coins()
 	update_lifes()
 	update_waves()
+	
+	Waves.current = 0
+	Waves.max_mob = array_waves[Waves.current]
 
 func update_coins():
 	_path("game/VBoxContainer/coins/Label").text = str(coins)
