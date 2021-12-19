@@ -23,17 +23,12 @@ func _ready():
 	connect("timeout_chronometer", self, "_on_timeout_chronometer")
 
 func _process(delta):
-	# print("[Wave] _process "+str(timeout)+" > "+str(Constants.WAVES_MOB_INTERVAL)+" and "+str(Constants.WAVES_MOB_INTERVAL)+" and "+str(mob_generated)+" < "+str(max_mob)+" and "+str(Values.start))
 	timeout += delta
 	if timeout > Constants.WAVES_MOB_INTERVAL and mob_generated < max_mob and Values.start:
 		emit_signal("timeout_chronometer")
 		timeout = 0
 		mob_generated += 1
 		get_tree().get_current_scene().get_node("Level").get_child(0).generate_mob()
-		# Waves.emit_signal("timeout")
-		# Waves.timeout = 0
-		# Waves.mob_generated += 1
-		# waves_current += 1
 
 func _on_wave_end(map_max_mob):
 	print("[Waves] _on_wave_end()")
@@ -62,6 +57,7 @@ func _on_timeout_start_time():
 	get_tree().get_current_scene().get_node("StartTime/Chrono").stop()
 	get_tree().get_current_scene().get_node("TimerStart/CenterContainer").visible = false
 	Values.start = true
+	get_tree().get_current_scene().get_node("Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/game/waves/HBoxContainer/current").text = str(1 + current)
 
 func _on_timeout_chronometer():
 	print("[Waves] _on_timeout_chronometer")
