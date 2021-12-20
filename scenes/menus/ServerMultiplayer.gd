@@ -44,9 +44,10 @@ remote func pre_configure_game():
 		player.set_network_master(p) # Will be explained later
 		get_node("/root/ServerMultiplayer/Players").add_child(player)
 	
-	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
-	# The server can call get_tree().get_rpc_sender_id() to find out who said they were done.
-	rpc_id(1, "done_preconfiguring")
+	if is_instance_valid(Values.multi_player_host):
+		# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
+		# The server can call get_tree().get_rpc_sender_id() to find out who said they were done.
+		rpc_id(1, "done_preconfiguring")
 
 func _info_type_network():
 	if get_tree().is_network_server():
@@ -94,6 +95,7 @@ func _server_disconnected():
 	print("_server_disconnected")
 
 remote func register_player(info):
+	print("Registry Player : "+str(info))
 	# Get the id of the RPC sender.
 	var id = get_tree().get_rpc_sender_id()
 	# Store the info
@@ -116,3 +118,10 @@ remote func post_configure_game():
 	if 1 == get_tree().get_rpc_sender_id():
 		get_tree().set_pause(false)
 		# Game starts now!
+
+func _on_Cancel_pressed():
+	# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://scenes/menus/Home.tscn")
+
+func _on_launch_game_pressed():
+	print("Launche Game !!")

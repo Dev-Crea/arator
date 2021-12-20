@@ -1,9 +1,10 @@
-# Created by https://www.toptal.com/developers/gitignore/api/linux,godot,vim,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,godot,vim,windows
+# Created by https://www.toptal.com/developers/gitignore/api/linux,windows,godot
+# Edit at https://www.toptal.com/developers/gitignore?templates=linux,windows,godot
 
 ### Godot ###
 # Godot-specific ignores
 .import/
+exports/*/*
 export.cfg
 export_presets.cfg
 
@@ -28,26 +29,6 @@ data_*/
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
-### Vim ###
-# Swap
-[._]*.s[a-v][a-z]
-!*.svg  # comment out if you don't need vector files
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
-
-# Session
-Session.vim
-Sessionx.vim
-
-# Temporary
-.netrwhist
-# Auto-generated tag files
-tags
-# Persistent undo
-[._]*.un~
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -75,4 +56,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,godot,vim,windows
+# End of https://www.toptal.com/developers/gitignore/api/linux,windows,godot

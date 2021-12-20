@@ -12,7 +12,7 @@ config_version=4
 
 config/name="Arator"
 config/description="Tower Defense multi player."
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/menus/Home.tscn"
 config/icon="res://icon.png"
 
 [autoload]

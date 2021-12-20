@@ -11,8 +11,10 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 608.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 598.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -20,53 +22,68 @@ __meta__ = {
 }
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 796.0
-margin_bottom = 608.0
+margin_right = 776.0
+margin_bottom = 588.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ListPlayer" type="ItemList" parent="HBoxContainer/VBoxContainer2"]
-margin_right = 796.0
-margin_bottom = 276.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+margin_right = 776.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ListPlayer" type="ItemList" parent="HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_right = 386.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ListRole" type="ItemList" parent="HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 390.0
+margin_right = 776.0
+margin_bottom = 256.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ChatInput" type="LineEdit" parent="HBoxContainer/VBoxContainer2"]
-margin_top = 280.0
-margin_right = 796.0
-margin_bottom = 304.0
+margin_top = 260.0
+margin_right = 776.0
+margin_bottom = 284.0
 focus_mode = 1
 
 [node name="ChatOutput" type="TextEdit" parent="HBoxContainer/VBoxContainer2"]
-margin_top = 308.0
-margin_right = 796.0
-margin_bottom = 608.0
+margin_top = 288.0
+margin_right = 776.0
+margin_bottom = 588.0
 rect_min_size = Vector2( 0, 300 )
 readonly = true
 context_menu_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 800.0
-margin_right = 1024.0
-margin_bottom = 608.0
+margin_left = 780.0
+margin_right = 1004.0
+margin_bottom = 588.0
 rect_min_size = Vector2( 224, 0 )
 alignment = 2
 
-[node name="Cancel" type="Button" parent="HBoxContainer/VBoxContainer"]
-margin_top = 564.0
-margin_right = 224.0
-margin_bottom = 584.0
-text = "Cancel"
-
 [node name="OK" type="Button" parent="HBoxContainer/VBoxContainer"]
-margin_top = 588.0
+margin_top = 544.0
 margin_right = 224.0
-margin_bottom = 608.0
+margin_bottom = 564.0
 text = "ok"
+
+[node name="Cancel" type="Button" parent="HBoxContainer/VBoxContainer"]
+margin_top = 568.0
+margin_right = 224.0
+margin_bottom = 588.0
+text = "Cancel"
 
 [node name="Players" type="Node2D" parent="."]
 
 [connection signal="text_entered" from="HBoxContainer/VBoxContainer2/ChatInput" to="." method="_on_ChatInput_text_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/OK" to="." method="_on_launch_game_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]
