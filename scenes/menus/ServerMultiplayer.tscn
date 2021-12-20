@@ -36,7 +36,30 @@ margin_bottom = 256.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ListPlayer" type="ItemList" parent="HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="Player" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_right = 386.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/HBoxContainer/Player"]
+margin_right = 386.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer2/HBoxContainer/Player/HBoxContainer"]
+margin_right = 332.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Name"
+
+[node name="ColorPlayer" type="ColorPickerButton" parent="HBoxContainer/VBoxContainer2/HBoxContainer/Player/HBoxContainer"]
+margin_left = 336.0
+margin_right = 386.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 50, 0 )
+
+[node name="ListPlayer" type="ItemList" parent="HBoxContainer/VBoxContainer2/HBoxContainer/Player"]
+margin_top = 28.0
 margin_right = 386.0
 margin_bottom = 256.0
 size_flags_horizontal = 3
@@ -84,6 +107,7 @@ text = "Cancel"
 
 [node name="Players" type="Node2D" parent="."]
 
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer2/HBoxContainer/ListRole" to="." method="_on_ListRole_item_selected"]
 [connection signal="text_entered" from="HBoxContainer/VBoxContainer2/ChatInput" to="." method="_on_ChatInput_text_entered"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/OK" to="." method="_on_launch_game_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]

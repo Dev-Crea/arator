@@ -16,6 +16,7 @@ var select_damage: String
 var select_level: String
 var select_range: String
 var multi_player_host = null
+var count_player = 1
 
 func _ready():
 	# warning-ignore:return_value_discarded
