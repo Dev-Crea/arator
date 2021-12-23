@@ -13,7 +13,7 @@ var my_info = {
 var players_done = []
 
 func _ready():
-	_configureWindow()
+	_configure_window()
 	_connect_network()
 	_info_type_network()
 	_connect_signals()
@@ -39,7 +39,7 @@ func _add_list_roles():
 	$HBoxContainer/VBoxContainer2/HBoxContainer/ListRole.add_item("Tech")
 	$HBoxContainer/VBoxContainer2/HBoxContainer/ListRole.add_item("Tank")
 
-func _configureWindow():
+func _configure_window():
 	$HBoxContainer/VBoxContainer2/ChatInput.grab_focus()
 
 func _connect_network():
@@ -169,6 +169,3 @@ func _on_ListRole_item_selected(index):
 			
 			if clr == color_with_alpha:
 				list.set_item_custom_bg_color(index_item, Color(0, 0, 0, 0))
-
-func _current_player():
-	pass

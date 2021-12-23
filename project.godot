@@ -23,6 +23,7 @@ Towers="*res://scripts/Towers.gd"
 Constants="*res://scripts/Constants.gd"
 Maps="*res://scripts/Maps.gd"
 Waves="*res://scripts/Waves.gd"
+Network="*res://scripts/Network.gd"
 
 [display]
 
