@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/logger/log_base.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=3]
 [ext_resource path="res://scenes/towers/BuilderZone.tscn" type="PackedScene" id=5]
 
@@ -71,6 +72,12 @@ autostart = true
 autostart = true
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="Logger" type="Node" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "Logger V1.2 ApolloX"
+}
 
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/info/ColorRect/HBoxContainer/update" to="." method="_on_update_pressed"]
 [connection signal="pressed" from="Camera/HUD/HBoxContainer/ColorRect/TileMap/Control/HBoxContainer/build/GridContainer/punk" to="." method="_on_tower_punk_pressed"]

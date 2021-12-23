@@ -1,6 +1,10 @@
 extends Control
 
+onready var Log = $Logger
+
 func _ready():
+	# Log.level(Log.DEBUG)
+	Log.debug("Test logger")
 	$CenterContainer/HBoxContainer/menu/version.text = Constants.VERSION
 
 func _on_start_pressed():
