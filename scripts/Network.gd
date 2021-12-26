@@ -12,12 +12,14 @@ var player_info = {}
 var my_info = {}
 # Info about user ready to play (used only when waiting connection)
 var players_done = []
+var current_node = null
 
 func _ready():
 	print("Connection module is ready")
 	check_internet()
 
-func configure(node_name, commander_info):
+func configure(node_name, commander_info, node):
+	current_node = node
 	_configure_type_network(node_name, commander_info)
 	_connect_signals()
 
@@ -53,8 +55,8 @@ func _connect_signals():
 	alert_signal(get_tree().connect("server_disconnected", self, "_server_disconnected"), "server_disconnected")
 
 func alert_signal(signal_connect, signal_name):
-	if !signal_connect:
-		print("Error when "+signal_name)
+	if signal_connect != OK:
+		print("Error when "+signal_name+"["+str(signal_connect)+"]")
 
 remote func _pre_configure_game(node_name, commander_info):
 	var selfPeerID = get_tree().get_network_unique_id()
@@ -130,3 +132,9 @@ func _on_request_completed(result, response_code, _headers, _body):
 		internet = true
 	else:
 		internet = false
+
+func send_message(message):
+	rpc("receive_message", message)
+
+sync func receive_message(message):
+	current_node.emit_signal("receive_message", message)

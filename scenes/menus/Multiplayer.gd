@@ -1,11 +1,14 @@
 extends Control
 
+signal receive_message(message)
+
 func _ready():
 	var player = _define_player()
 	
 	Values.network.configure(
 		"Multiplayer",
-		player
+		player,
+		self
 	)
 	_configure_window()
 	_add_list_roles()
@@ -47,10 +50,9 @@ func _configure_window():
 
 func _on_ChatInput_text_entered(new_text):
 	var id = get_tree().get_network_unique_id()
-	var msg = "\n["+str(id)+"] "+new_text
 	$HBoxContainer/VBoxContainer2/ChatInput.text = ""
 	
-	rpc("receive_message", msg)
+	Values.network.send_message("\n["+str(id)+"] "+new_text)
 
 func _on_Cancel_pressed():
 	# warning-ignore:return_value_discarded
@@ -73,3 +75,6 @@ func _on_ListRole_item_selected(index):
 			
 			if clr == color_with_alpha:
 				list.set_item_custom_bg_color(index_item, Color(0, 0, 0, 0))
+
+func _on_ServerMultiplayer_receive_message(message):
+	$HBoxContainer/VBoxContainer2/ChatOutput.text += message

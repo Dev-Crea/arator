@@ -107,6 +107,7 @@ text = "Cancel"
 
 [node name="Players" type="Node2D" parent="."]
 
+[connection signal="receive_message" from="." to="." method="_on_ServerMultiplayer_receive_message"]
 [connection signal="item_selected" from="HBoxContainer/VBoxContainer2/HBoxContainer/ListRole" to="." method="_on_ListRole_item_selected"]
 [connection signal="text_entered" from="HBoxContainer/VBoxContainer2/ChatInput" to="." method="_on_ChatInput_text_entered"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/OK" to="." method="_on_launch_game_pressed"]
