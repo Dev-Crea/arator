@@ -17,13 +17,13 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Network="*res://scripts/Network.gd"
 Values="*res://scripts/Values.gd"
 Actions="*res://scripts/Actions.gd"
 Towers="*res://scripts/Towers.gd"
 Constants="*res://scripts/Constants.gd"
 Maps="*res://scripts/Maps.gd"
 Waves="*res://scripts/Waves.gd"
-Network="*res://scripts/Network.gd"
 
 [display]
 

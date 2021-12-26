@@ -17,8 +17,8 @@ func _ready():
 	print("Connection module is ready")
 	check_internet()
 
-func configure():
-	_configure_type_network()
+func configure(node_name, commander_info):
+	_configure_type_network(node_name, commander_info)
 	_connect_signals()
 
 func check_internet():
@@ -30,14 +30,14 @@ func check_internet():
 	http.connect("request_completed", self, "_on_request_completed")
 	http.request("https://duckduckgo.com/")
 
-func _configure_type_network():
+func _configure_type_network(node_name, commander_info):
 	if Values.multi_player_host == null:
 		_configure_server()
 	else:
 		_configure_client()
 	
 	get_tree().set_network_peer(peer)
-	_pre_configure_game()
+	_pre_configure_game(node_name, commander_info)
 
 func _configure_server():
 	peer.create_server(Constants.SERVER_PORT, Constants.MAX_PLAYERS)
@@ -56,21 +56,24 @@ func alert_signal(signal_connect, signal_name):
 	if !signal_connect:
 		print("Error when "+signal_name)
 
-remote func _pre_configure_game():
+remote func _pre_configure_game(node_name, commander_info):
 	var selfPeerID = get_tree().get_network_unique_id()
+	var node = "/root/" + node_name + "/Players"
 	
 	# Load my player
-	var my_player = preload("res://scenes/players/Player.tscn").instance()
+	var my_player = preload("res://scenes/players/Commander.tscn").instance()
+	my_player.set_pseudo(commander_info["pseudo"])
 	my_player.set_name(str(selfPeerID))
 	my_player.set_network_master(selfPeerID) # Will be explained later
-	get_node("/root/ServerMultiplayer/Players").add_child(my_player)
-	
+	#get_node(node).add_child(my_player)
+
 	# Load other players
-	for p in player_info:
+	for info in player_info:
 		var player = preload("res://scenes/players/Player.tscn").instance()
-		player.set_name(str(p))
-		player.set_network_master(p) # Will be explained later
-		get_node("/root/ServerMultiplayer/Players").add_child(player)
+		player.set_pseudo(info["pseudo"])
+		player.set_name(str(info))
+		player.set_network_master(info) # Will be explained later
+		get_node(node).add_child(player)
 	
 	if is_instance_valid(Values.multi_player_host):
 		# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
@@ -95,8 +98,9 @@ func _server_disconnected():
 	print("_server_disconnected")
 
 remote func register_player(info):
-	Values.count_player += 1
 	print("Registry Player : "+str(info))
+	Values.count_player += 1
+	print("Number of player : "+str(Values.count_player))
 	# Get the id of the RPC sender.
 	var id = get_tree().get_rpc_sender_id()
 	# Store the info

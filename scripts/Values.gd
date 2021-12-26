@@ -17,10 +17,15 @@ var select_level: String
 var select_range: String
 var multi_player_host = null
 var count_player = 1
+var network = null
 
 func _ready():
 	# warning-ignore:return_value_discarded
 	self.connect("buy", self, "buy_object")
+	self.network = Network
+
+func multi_player_hosting():
+	return multi_player_host == null
 
 func initialize_level(level_lifes, level_coins, array_waves):
 	self.lifes = level_lifes

@@ -3,8 +3,7 @@ extends Node
 onready var Log = $Logger
 
 func _ready():
-	Log.level(Log.DEBUG)
-	Log.debug("Test logger")
+	Log.debug("[MAIN] Start game")
 	$Level.add_child(Maps.next_level())
 	# warning-ignore:return_value_discarded
 	$StartTime/Chrono.connect("timeout", Waves, "_on_timeout_chronometer")
