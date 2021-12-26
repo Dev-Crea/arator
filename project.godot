@@ -28,7 +28,6 @@ Waves="*res://scripts/Waves.gd"
 [display]
 
 window/size/height=608
-window/size/resizable=false
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 

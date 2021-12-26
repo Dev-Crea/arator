@@ -121,35 +121,36 @@ text = "Create Server"
 [node name="multi-join" type="HBoxContainer" parent="CenterContainer/HBoxContainer/menu"]
 margin_top = 160.0
 margin_right = 300.0
-margin_bottom = 180.0
+margin_bottom = 184.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextEdit" type="TextEdit" parent="CenterContainer/HBoxContainer/menu/multi-join"]
+[node name="TextEdit" type="LineEdit" parent="CenterContainer/HBoxContainer/menu/multi-join"]
 margin_right = 232.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
-text = "127.0.0.1"
+align = 1
+placeholder_text = "127.0.0.1"
 
 [node name="Button" type="Button" parent="CenterContainer/HBoxContainer/menu/multi-join"]
 margin_left = 236.0
 margin_right = 300.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 text = "Connect"
 
 [node name="quit" type="Button" parent="CenterContainer/HBoxContainer/menu"]
-margin_top = 184.0
+margin_top = 188.0
 margin_right = 300.0
-margin_bottom = 204.0
+margin_bottom = 208.0
 size_flags_horizontal = 3
 text = "Quit"
 
 [node name="version" type="Label" parent="CenterContainer/HBoxContainer/menu"]
-margin_top = 208.0
+margin_top = 212.0
 margin_right = 300.0
-margin_bottom = 222.0
+margin_bottom = 226.0
 align = 1
 valign = 1
 
